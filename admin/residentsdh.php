@@ -4,6 +4,7 @@ session_start();
 
 
 ?>
+ <?php include 'includes2/header-admin.php';?>
 <!DOCTYPE html>
 <html>
 
@@ -39,63 +40,26 @@ session_start();
       position: relative;
       top: 7px
     }
+
+    .sidebar {
+    width: 250px; 
+    padding: 20px; 
+  }
+
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px; 
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
   </style>
 
 </head>
 
 <body>
-
-
-
-  <nav class="navbar navbar-light bg-light fixed-top ">
-    <style>
-      a {
-        color: black;
-      }
-
-      a:hover {
-        color: violet;
-      }
-
-      .dropdown-menu {
-        padding: 15px;
-
-      }
-    </style>
-
-    <a class="navbar-brand" href="home.php" style="padding-left: 10px;"> <img src="logowr.png" width="20px"> </a>
-    <a class="navbar-brand">Hello, <?php echo $_SESSION['name']; ?></a>
-    <a class="navbar-brand navbar-right .active   " href="createadmin.php"></a>
-    <a class="navbar-brand navbar-right  " href="changepassword.php"> </a>
-    <a class="navbar-brand navbar-right  " href="logout.php" style="margin-left: auto"></a>
-    <div class="dropdown droptxt">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin Settings
-        <span class="caret"></span></button>
-      <ul class="dropdown-menu droptxt">
-        <li><a href="createadmin.php">Create Admin Account</a></li>
-        <li><a href="changepassword.php">Reset Password</a></li>
-        <div class="dropdown-divider"></div>
-        <li><a href="logout.php">Logout</a></li>
-    </div>
-    </ul>
-    </div>
-  </nav>
-
-  <div class="sidebar">
-    <br><br><br><br>
-
-    <a href="residents.php ">Residents</a>
-    <!--<a href="artist.php">Artist</a> -->
-    <a href="docrequest.php">Document Requests</a>
-    <a href="payment.php">Payment</a>
-    <a href="pricing.php">Pricing</a>
-    <a href="report.php">Reports</a>
-    <!--<a href="refund.php">Refund</a>
-<a href="payartist.php">Pay Artist</a> -->
-    <a href="Blog.php">CMS</a>
-  </div>
-
-  </div>
 
   <div class="main"><br><br><br>
     <div class="container">

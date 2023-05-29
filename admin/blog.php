@@ -5,6 +5,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
     include("db_conn.php");
 
 ?>
+
+<?php include 'includes2/header-admin.php';?>
     <!DOCTYPE html>
     <html>
 
@@ -33,192 +35,159 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
 
 
-        <nav class="navbar navbar-light bg-light fixed-top ">
-            <style>
-                a {
-                    color: black;
-                }
+     
+<style>
+    a {
+    color: black;
+    }
 
-                a:hover {
-                    color: violet;
-                }
+  a:hover {
+    color: violet;
+  }
 
-                .dropdown-menu {
-                    padding: 15px;
+    .dropdown-menu {
+     padding: 15px;
 
-                }
-            </style>
+   }
+   .sidebar {
+    width: 250px; /* Modify the width of the sidebar as needed */
+    padding: 20px; /* Add padding to create space around the links */
+  }
 
-            <a class="navbar-brand" href="home.php" style="padding-left: 10px;"> <img src="logowr.png" width="20px"> </a>
-            <a class="navbar-brand">Hello, <?php echo $_SESSION['name']; ?></a>
-            <a class="navbar-brand navbar-right .active   " href="createadmin.php"></a>
-            <a class="navbar-brand navbar-right  " href="changepassword.php"> </a>
-            <a class="navbar-brand navbar-right  " href="logout.php" style="margin-left: auto"></a>
-            <div class="dropdown droptxt">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin Settings
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu droptxt">
-                    <li><a href="createadmin.php">Create Admin Account</a></li>
-                    <li><a href="changepassword.php">Reset Password</a></li>
-                    <div class="dropdown-divider"></div>
-                    <li><a href="logout.php">Logout</a></li>
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px; /* Add margin bottom for spacing between links */
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+.content_td{
+    text-align: left;
+  
+
+
+    
+}
+
+.custom-button {
+  /* Add your custom styles here */
+  background-color: #001D3D;
+  color: #FFFFFF;
+  font-size: 16px;
+  border-color: #001D3D;
+  /* Add more styles as needed */
+}
+
+
+.custom-button:hover {
+  /* Add your custom styles here */
+  background-color: #001D3D;
+  
+  /* Add more styles as needed */
+}
+
+
+
+</style>
+
+ <body>
+        
+
+        <br><br><br><br>
+    
+        <div class="main-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <br><br>
+                <div class="row">
+    <div class="col-md-6">
+        <div class="column">
+            <div class="head">
+                <h1 class="page-header text-left custom-heading">Create Post</h1>
             </div>
-            </ul>
-            </div>
-        </nav>
-        <div class="sidebar">
-<br><br><br><br>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="create-post"  style="margin-top: 15px;">
+        <a type="button" class="btn btn-primary custom-button" href="blogcreate.php">Create a post</a>
 
-<a href="residents.php ">Residents</a>
-<!--<a href="artist.php">Artist</a> -->
-<a href="docrequest.php">Document Requests</a>
-<a href="payment.php">Payment</a>
-<a href="pricing.php">Pricing</a>
-<a href="report.php">Reports</a>
-<!--<a href="refund.php">Refund</a>
-<a href="payartist.php">Pay Artist</a> -->
-<a href="Blog.php">CMS</a>
+        </div>
+    </div>
 </div>
 
-
-        </div><br><br><br><br>
-
-        <div class="main">
-            <div class="container ">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>Create Post</h1><br><br>
-
-                        <a type="button" class="btn btn-primary" href="blogcreate.php">Create a post</a><br><br>
-
-                    </div>
-
-                    <style>
-                        .buttonz {
-                            width: 60px;
-                            height: 30px;
-                            vertical-align: top;
-                        }
-                    </style>
-
-                    <?php
-                                if (isset($_SESSION['error'])) {
-                                    echo
-                                    "
-                                        <div class='alert alert-danger text-center'>
-                                            <button class='close'>&times;</button>
-                                            " . $_SESSION['error'] . "
-                                        </div>
-                                        ";
-                                    unset($_SESSION['error']);
-                                  }
-                                  if (isset($_SESSION['success'])) {
-                                    echo
-                                    "
-                                        <div class='alert alert-success text-center'>
-                                            <button class='close'>&times;</button>
-                                            " . $_SESSION['success'] . "
-                                        </div>
-                                        ";
-                                    unset($_SESSION['success']);
-                                  }
-                                  ?>
-                    <div class="col-10">
-                        <div class="height10">
-
-
-                            <table id="myTable" class="table text-center table-striped ">
-                                <thead class="thead-dark">
-                                    <th>ID</th>
-                                    <th>TITLE</th>
-                                    <th>DATE</th>
-                                    <th>CONTENT</th>
-                                    <th>IMG</th>
-                                    <th>CATEGORY</th>
-                                    <th>ACTION</th>
-
-
-
-                                </thead>
-                                <tbody>
-
-
-
-                                    <?php
-
-
-                                    include_once('db_conn.php');
-                                    $sql = "SELECT * FROM table_blog";
-
-
-                                    //use for MySQLi-OOP
-                                    $query = $conn->query($sql);
-                                    while ($row = $query->fetch_assoc()) {
-                                        echo
-                                        "<tr>
-        <td>" . $row['id'] . "</td>
-        <td>" . $row['title'] . "</td>
-        <td>" . $row['date'] . "</td>
-        <td class='ontent_td' ><p>" . $row['content'] . "</p>   </td>
-        <td>" . $row['img'] . "</td>
-        <td>" . $row['category'] . "</td>
-        
-        
-        <td>
-            
-            <a href='#delete_" . $row['id'] . "' class='buttonz btn btn-danger btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
-        </td>
-    </tr>";
-                                        include('deleteBlogModal.php');
-                                    }
-                                    /////////////////
-
-                                    //use for MySQLi Procedural
-                                    // $query = mysqli_query($conn, $sql);
-                                    // while($row = mysqli_fetch_assoc($query)){
-                                    // 	echo
-                                    // 	"<tr>
-                                    // 		<td>".$row['id']."</td>
-                                    // 		<td>".$row['firstname']."</td>
-                                    // 		<td>".$row['lastname']."</td>
-                                    // 		<td>".$row['address']."</td>
-                                    // 		<td>
-                                    // 			<a href='#edit_".$row['id']."' class='btn btn-success btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Edit</a>
-                                    // 			<a href='#delete_".$row['id']."' class='btn btn-danger btn-sm' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
-                                    // 		</td>
-                                    // 	</tr>";
-                                    // 	include('edit_delete_modal.php');
-                                    // }
-                                    /////////////////
-
-                                    ?>
-
-
-                                    </tr>
-
-
-                                </tbody>
-                            </table>
-
-                        </div>
-
+               
+               
+            </div>
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo "
+                <div class='alert alert-danger text-center'>
+                    <button class='close'>&times;</button>
+                    " . $_SESSION['error'] . "
+                </div>";
+                unset($_SESSION['error']);
+            }
+            if (isset($_SESSION['success'])) {
+                echo "
+                <div class='alert alert-success text-center'>
+                    <button class='close'>&times;</button>
+                    " . $_SESSION['success'] . "
+                </div>";
+                unset($_SESSION['success']);
+            }
+            ?>
+            <div class="col-md-12">
+            <div class="table-responsive">
+                <div class="height10">
+                    <table id="myTable" class="table text-left table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <th style="background-color: #001D3D;">ID</th>
+                            <th style="background-color: #001D3D;">TITLE</th>
+                            <th style="background-color: #001D3D;">DATE</th>
+                            <th style="background-color: #001D3D;">CONTENT</th>
+                            <th style="background-color: #001D3D;">IMG</th>
+                            <th style="background-color: #001D3D;">CATEGORY</th>
+                            <th style="background-color: #001D3D;">ACTION</th>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include_once('db_conn.php');
+                            $sql = "SELECT * FROM table_blog";
+                            $query = $conn->query($sql);
+                            while ($row = $query->fetch_assoc()) {
+                                $imagePath = 'blogimage/' . $row['img'];
+                                
+                                echo "
+                                <tr>
+                                    <td>" . $row['id'] . "</td>
+                                    <td>" . $row['title'] . "</td>
+                                    <td>" . $row['date'] . "</td>
+                                    <td class='content_td'>
+                                        <p>" . $row['content'] . "</p>
+                                    </td>
+                                    <td class='img_td'>
+                                         <img src='" . $imagePath . "' style='width: 100px;'>
+                                     </td>
+                                    <td>" . $row['category'] . "</td>
+                                    <td>
+                                        <a href='#delete_" . $row['id'] . "' class='buttonz btn btn-danger btn-sm' data-toggle='modal'>
+                                            <span class='glyphicon glyphicon-trash'></span> Delete
+                                        </a>
+                                    </td>
+                                </tr>";
+                                include('deleteBlogModal.php');
+                            }
+                            ?>
+                         </table>
                     </div>
                 </div>
-
-
-
-
             </div>
         </div>
-        </div>
-
-
-
-        </div>
-
-
-
-
+    </div>
+</div>
 
 
     </body>

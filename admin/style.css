@@ -30,28 +30,39 @@
     padding-top: 70px;
     
   }
-  
-  /* The navigation menu links */
-  .sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+
+  .sidebar {
+    width: 250px; /* Modify the width of the sidebar as needed */
+    padding: 20px; /* Add padding to create space around the links */
+  }
+
+  .sidebar a {
     display: block;
+    margin-bottom: 10px; /* Add margin bottom for spacing between links */
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
   }
+
   
-  /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
-    color: violet;
-  }
-  
+
   /* Style page content */
   .main{
     margin-left: 120px; /* Same as the width of the sidebar */
     padding-left: 0px 10px;
+    background-color: whitesmoke;
     
     
     
+  }
+
+  .dblabel{
+    padding-left: 150px;
+    padding-top: 130px;
+    padding-bottom: 30px;
+    font-weight: bold;
+    color: #001D3D;
   }
   @media screen and (max-width: 700px) {
     .main{
@@ -88,7 +99,7 @@
   margin: 0;
   padding: 0;
   width: 120px;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -100,6 +111,7 @@
   color: black;
   padding: 16px;
   text-decoration: none;
+  font-weight: bold;
 }
 
 /* Active/current link */
@@ -110,8 +122,10 @@
 
 /* Links on mouse-over */
 .sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+  background-color: #FFC300;
+  color: #001D3D;
+  border-radius: 20px;
+  font-weight: bolder;
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
@@ -127,7 +141,7 @@ div.content {
     width: 100%;
     height: auto;
     position: relative;
-    margin-left: 0px;
+   
   }
   .sidebar a {float: center;}
   div.content {margin-left: 0;}
@@ -141,3 +155,13 @@ div.content {
     margin-left: 0px;
   }
 }
+
+/* resident page */
+
+.custom-heading {
+  font-size: 30px;
+  color: #001D3D;
+  text-align: left;
+  /* Add any other custom styles you want */
+}
+

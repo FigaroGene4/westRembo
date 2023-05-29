@@ -1,173 +1,169 @@
 
 
-<!doctype html>
-                        <html>
-                            <head>
-                                
-                                
-                            <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css' rel='stylesheet'>
-                                <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
-                                <style>@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title> Welcome to West Rembo!</title>
+  <meta content="" name="description">
+
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+ 
+ 
+  
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: FlexStart - v1.9.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+body{
+  font-family: 'Work Sans', sans-serif;
+    background: #ececec;
+}
+
+/*------------ Login container ------------*/
+
+.box-area{
+    width: 1000px;
+    height: 70vh;
+}
+
+/*------------ Right box ------------*/
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder{
+    font-size: 16px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
 }
 
 
+/*------------ For small screens------------*/
 
-.container {
-    margin: 50px auto
+@media only screen and (max-width: 768px){
+
+     .box-area{
+        margin: 0 10px;
+
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 20px;
+     }
+
 }
+</style>
+<body oncontextmenu='return false' class='snippet-body'>
 
-.panel-heading {
-    text-align: center;
-    margin-bottom: 10px
-}
+  
+   <!----------------------- Main Container -------------------------->
+   <div class="container d-flex justify-content-center align-items-center min-vh-100 ">
+    <!----------------------- Login Container -------------------------->
+       <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        
+    <!--------------------------- Left Box ----------------------------->
+       <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: transparent;">
+       
+           <div class="featured-image mb-3">
+            <img src="../wrp-assets/admin.png" class="img-fluid" style="width: 350px;">
+           </div>
+           <p class="text-dark fs-2" style="font-weight: 600;">Admin Login</p>
+           <small class="text-dark text-wrap text-center" style="width: 17rem;">Sign in your account</small>
+       </div> 
+    <!-------------------- ------ Right Box ---------------------------->
+        
+       <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+                <div class="header-text mb-4">
+                     <h2 style="font-weight: 600; color:black">Login</h2>
+                     <p>Sign in your account.</p>
 
-#forgot {
-    min-width: 100px;
-    margin-left: auto;
-    text-decoration: none
-}
+                
+                </div>
 
-a:hover {
-    text-decoration: none
-}
-
-.form-inline label {
-    padding-left: 10px;
-    margin: 0;
-    cursor: pointer
-}
-
-.btn.btn-primary {
-    margin-top: 20px;
-    border-radius: 15px
-}
-
-.panel {
-    min-height: 380px;
-    box-shadow: 20px 20px 80px rgb(218, 218, 218);
-    border-radius: 12px
-}
-
-.input-field {
-    border-radius: 5px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border: 1px solid #ddd;
-    color: #4343ff
-}
-
-input[type='text'],
-input[type='password'] {
-    border: none;
-    outline: none;
-    box-shadow: none;
-    width: 100%
-}
-
-.fa-eye-slash.btn {
-    border: none;
-    outline: none;
-    box-shadow: none
-}
-
-img1{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    position: relative
-}
-
-a[target='_blank'] {
-    position: relative;
-    transition: all 0.1s ease-in-out
-}
-
-.bordert {
-    border-top: 1px solid #aaa;
-    position: relative
-}
-
-
-
-@media(max-width: 360px) {
-    #forgot {
-        margin-left: 0;
-        padding-top: 10px
-    }
-
-    body {
-        height: 100%
-    }
-
-    .container {
-        margin: 30px 0
-    }
-
-    .bordert:after {
-        left: 25%
-    }
-}</style>
-                                <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-                                <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js'></script>
-                                <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
-                            </head>
-                            <body oncontextmenu='return false' class='snippet-body'>
-
-                            <br><br>
-                            
-                           
-
-                            <div class="container" style="text-align:center;">
-                                <h1>West Rembo Admin</h1>
+                <form action="login.php" method="POST" autocomplete="">
+                    <small class="text-black text-wrap text-center" style="width: 17rem; font-weight: 600; color:black">Email address</small>
+                    <div class="input-group mb-3">
+                    <input class="form-control" type="email" name="email" placeholder="Enter email address" style="background-color:white; border-color:grey">
                             </div>
-
-                            <div class="container" style="padding-right: 100px;">
-                                
-                           
-    <div class="row">
-         <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-            <div class="panel border bg-white">
-                <div class="panel-heading">
-                    <h3 class="pt-3 font-weight-bold">Login</h3>
-                </div>
-                <div class="panel-body p-3">
-                    <form action="login.php" method="POST">
-                        <div class="form-group py-2">
-                            <div class="input-field"> <span class="far fa-user p-2"></span> <input type="text" placeholder="Enter Email" name="email" required> </div>
+                    <small class="text-black text-wrap text-center" style="width: 17rem; font-weight: 600; color:black">Password</small>
+                    <div class="input-group mb-1">
+                    <input class="form-control" type="password" name="password" required placeholder="Enter your Password " name="password" style="background-color:white; border-color:grey" required></div>
+                            </div>
+                    <div class="input-group mb-5 d-flex justify-content-between">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="formCheck">
+                            <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
                         </div>
-                        <div class="form-group py-1 pb-2">
-                            <div class="input-field"> <span class="fas fa-lock px-2"></span> <input type="password" placeholder="Enter your Password    " name="password" required> <button class="btn bg-white text-muted"> </span> </button> </div>
+                        <div class="forgot">
+                            <small><a style="font-weight: 600; color:black" href="#">Forgot Password?</a></small>
                         </div>
-                        <div class="form-inline"> <input type="checkbox" name="remember" id="remember"> <label for="remember" class="text-muted">Remember me</label>
+                    </div>
+                    <div class="form-group">
+                    <input class="btn btn-primary btn-block mt-3"  type="submit" Style="background: #001D3D; border-color:#001D3D; color:white;" value="Login">
+                    </div>
+                    <div class="pass"><?php if (isset($_GET['error'])) { ?>
+                    <p class="error" style="color:red;"><?php echo $_GET['error']; ?></p>
+                    <?php } ?></div>
+                    <div class="input-group mb-3">
                         
-                      
-                        <input class="btn btn-primary btn-block mt-3" type="submit" value="Login">
-
-                        <br>
-                        <div class="pass"><?php if (isset($_GET['error'])) { ?>
-     		<p class="error" style="color:red;"><?php echo $_GET['error']; ?></p>
-     	<?php } ?></div>
-                    </form>
-                </div>
-
-                </div>
-               
-            </div>
-        </div>
+                    
+                    
+                  </form>
+                  </div>
+          </div>
+       </div> 
+      </div>
     </div>
-</div>
-                            <div class="container" style="text-align: center;"> <a href="../index.php">Go to Homepage</a>
-</div>
+    <script type='text/javascript'></script>
 
-                            <script type='text/javascript'></script>
-                            </body>
-                        </html>
+</body>
+
+</html>

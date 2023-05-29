@@ -1,62 +1,136 @@
- <!-- ======= Footer ======= -->
- <footer id="footer" class="footer">
+<style>  
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.container{
+	max-width: 100%;
+	margin:auto;
+}
+
+h5{
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+}
+li a{
+    color: #000814;
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+footer{
+	background-image: url('wrp-assets/footer-bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 120px;
+    
+   
+   
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+footer col h4{
+	
+	color: #000814;
+	font-family: 'Work Sans', sans-serif;
+	margin-bottom: 35px;
+	font-weight: 700;
+	position: relative;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+}
+
+footer col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+footer col ul li a{
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 35px;
+	
+	
+	color: #000814;
+	text-decoration: none;
+	font-weight: 300;
+	color: #000814;
+	display: block;
+	transition: all 0.3s ease;
+}
 
 
+.left{
+    padding-left: 40px;
+  width: 0%;
+}
 
-<div class="footer-top">
-  <div class="container">
-    <div class="row gy-4">
-      <div class="col-lg-5 col-md-12 footer-info">
-        <a href="#" class="logo d-flex align-items-center">
-          
-          <span>West Rembo</span>
-        </a>
-        <p>Welcome to our West Rembo App. Access our services via online</p>
-        <div class="social-links mt-3">
-         
-          <a href="https://www.facebook.com/spa2gohomeservice" class="facebook"><i class="bi bi-facebook"></i></a>
-         
-        </div>
-      </div>
+.middle,.right {
+  width: 25%;
+}
 
-      <div class="col-lg-2 col-6 footer-links">
-        
-      </div>
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
 
-      <div class="col-lg-2 col-6 footer-links">
-        <h4>Our Services</h4>
-        <ul>
-          <li><i class="bi bi-chevron-right"></i>Documents</li>
-          <li><i class="bi bi-chevron-right"></i>News</a></li>
-          <li><i class="bi bi-chevron-right"></i>Appointment </li>
-          <li><i class="bi bi-chevron-right"></i> About</li>
-     
-        </ul>
-      </div>
+</style>
 
-      <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-        <h4>Contact Us</h4>
-        <p>
-          West Rembo <br>
-          Makati,<br>
-          Philippines <br><br>
-          <strong>Phone:</strong> +63 939 895 2293<br>
-          <strong>Email:</strong> westrembo.ph@gmail.com<br>
-        </p>
-
-      </div>
-
+<div class="container">
+  <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 my-5 ">
+    
+    
+    <div class="col-6">
+      <h5 style>Contact</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">westrembo.ph@gmail.com</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">+63 939 895 2293</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">West RemboMakati, Philippines</a></li>
+      </ul>
     </div>
-  </div>
+
+    <div class="col mb">
+      <h5>Our Services</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">Document Request</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">Appointment</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">Announcement</a></li>
+       
+      </ul>
+    </div>
+
+    <div class="col mb">
+      <h5>Quick links</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 " style="color: #000814;">Feedback</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">Contact us</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 "style="color: #000814;">About</a></li>
+      </ul>
+    </div>
+  </footer>
 </div>
 
-
-  <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-  </div>
-</div>
-</footer><!-- End Footer -->
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</html>

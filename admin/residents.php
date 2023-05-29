@@ -4,6 +4,7 @@ session_start();
 
 
 ?>
+ <?php include 'includes2/header-admin.php';?>
 <!DOCTYPE html>
 <html>
 
@@ -26,8 +27,9 @@ session_start();
   <link rel="stylesheet" type="text/css" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    .height10 {
+<style>
+
+.height10 {
       height: 10px;
     }
 
@@ -39,6 +41,64 @@ session_start();
       position: relative;
       top: 7px
     }
+
+    
+.custom-heading {
+  font-size: 30px;
+  color: #001D3D;
+  padding-top: 50px;
+  /* Add any other custom styles you want */
+}
+
+
+
+.sidebar {
+    width: 250px; 
+    padding: 20px; 
+  }
+
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px; 
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .nav-item {
+  background-color: #ffff;
+
+  /* Add any other custom styles you want */
+}
+
+
+.custom-tab{
+  font-size: 15px;
+  color: #001D3D;
+
+
+  /* Add any other custom styles for the tab links */
+}
+
+.nav-link.active{
+  font-weight: bold;
+  background-color: #001D3D;
+
+
+  /* Add any other custom styles for the active tab link */
+}
+
+
+.rs-btn {
+  background-color: #001D3D;
+  width: 100%;
+  
+  /* Additional custom styles */
+}
+
+
+  
   </style>
 
 </head>
@@ -47,63 +107,33 @@ session_start();
 
 
 
-  <nav class="navbar navbar-light bg-light fixed-top ">
-    <style>
-      a {
-        color: black;
-      }
 
-      a:hover {
-        color: violet;
-      }
-
-      .dropdown-menu {
-        padding: 15px;
-
-      }
-    </style>
-
-    <a class="navbar-brand" href="home.php" style="padding-left: 10px;"> <img src="logowr.png" width="20px"> </a>
-    <a class="navbar-brand">Hello, <?php echo $_SESSION['name']; ?></a>
-    <a class="navbar-brand navbar-right .active   " href="createadmin.php"></a>
-    <a class="navbar-brand navbar-right  " href="changepassword.php"> </a>
-    <a class="navbar-brand navbar-right  " href="logout.php" style="margin-left: auto"></a>
-    <div class="dropdown droptxt">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin Settings
-        <span class="caret"></span></button>
-      <ul class="dropdown-menu droptxt">
-        <li><a href="createadmin.php">Create Admin Account</a></li>
-        <li><a href="changepassword.php">Reset Password</a></li>
-        <div class="dropdown-divider"></div>
-        <li><a href="logout.php">Logout</a></li>
-    </div>
-    </ul>
-    </div>
-  </nav>
-
-  <div class="sidebar">
-    <br><br><br><br>
-
-    <a href="residents.php ">Residents</a>
-    <!--<a href="artist.php">Artist</a> -->
-    <a href="docrequest.php">Document Requests</a>
-    <a href="payment.php">Payment</a>
-    <a href="pricing.php">Pricing</a>
-    <a href="report.php">Reports</a>
-    <!--<a href="refund.php">Refund</a>
-<a href="payartist.php">Pay Artist</a> -->
-    <a href="Blog.php">CMS</a>
-  </div>
-
-  </div>
 
   <div class="main">
 
     <div class="container">
       <br><br><br>
-      <h1 class="page-header text-center">Residents' Information</h1>
+     
+      <div class="row">
+    <div class="col-md-6">
+        <div class="column">
+            <div class="head">
+                <h1 class="page-header text-left custom-heading">Residents' Information</h1>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="add-residents" style="margin-top: 50px;">
+        <a href="#addnew" data-toggle="modal" class="btn btn-add add-new" style="width: 130px; background-color: #001D3D; color: #ffff;">Add residents</a>
 
-      <header style="text-align: center;"> </header>
+               
+            </a>
+          
+        </div>
+    </div>
+</div>
+
+
 
       <br><br>
       <div class="row">
@@ -132,46 +162,33 @@ session_start();
             }
             ?>
           </div>
-          <style>
-            .buttonz {
-              width: 60px;
-              height: 30px;
-              vertical-align: top;
-            }
-          </style>
+ 
 
           <div class="container ">
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a class="nav-link active" href="residents.php">Verified Residents</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="forApproval.php">For Approval</a>
-              </li>
-
-            </ul>
-            <div class="row">
-              <div class="col-12">
-
-                <div class="height10">
-                </div>
-                <div class="row" ;>
-                  <table id="myTable" class="table text-center table-bordered table-striped ">
+                  <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="residents.php">Verified Residents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link custom-tab" href="forApproval.php">For Approval</a>
+          </li>
+        </ul>
+          <div class="row">
+              
+                  <table id="myTable" class="table text-center table-bordered table-striped table-responsive">
                     <thead>
 
 
-                      <th>Firstname</th>
-                      <th>Lastname</th>
-                      <th>Email</th>
-                      <th>Contact Number</th>
-                      <th>House Number</th>
-                      <th>Street</th>
-                      <th>Sitio</th>
-                      <th>Status</th>
-                      <th>Code</th>
-                      <th>Date Joined</th>
-
-                      <th>Action</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">First name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Last name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Email</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Contact Number</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">House Number</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Street</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Sitio</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Status</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Date joined</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Action</th>
 
                     </thead>
                     <tbody>
@@ -192,15 +209,7 @@ session_start();
                         $newDate = date("F d, Y", strtotime($ddate));
                         
                       
-                     
-
-
-                     
-                      
-                      
-
-                        
-
+      
 
                         echo
                         "<tr>
@@ -208,21 +217,27 @@ session_start();
                                   <td>" . $row['firstName'] . "</td>
                                   <td>" . $row['lastName'] . "</td>
                                   <td>" . $row['email'] . "</td>
-                <td>0" . $row['contactNumber'] . "</td>
-                <td>" . $row['houseNumber'] . "</td>
-                <td>" . $row['streetNumber'] . "</td>
-                <td>" . $row['sitio'] . "</td>
-                <td>" . $row['status'] . "</td>
-                <td>" . $row['code'] . "</td>
-                
-                <td>" . $newDate . "</td>
+                                  <td>0" . $row['contactNumber'] . "</td>
+                                  <td>" . $row['houseNumber'] . "</td>
+                                  <td>" . $row['streetNumber'] . "</td>
+                                  <td>" . $row['sitio'] . "</td>
+                                  <td>" . $row['status'] . "</td>
+                                  
+                                  <td>" . $newDate . "</td>
                
                 
                                   <td>
-                                      <a href='#edit_" . $row['id'] . "' class='btn btn-info btn-sm buttonz' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> PI</a>
-                                      <a href='residentsdh.php?email=" . $row['email'] . "' class='btn btn-success btn-sm buttonz'></span> History</a>
-                                      <a href='#delete_" . $row['id'] . "' class='btn btn-danger btn-sm buttonz' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Delete</a>
-                                  </td>
+                                  <a href='#edit_" . $row['id'] . "' class='btn btn-sm buttonz rs-btn' style='background-color: #FFC300; color: #001D3D; margin-bottom: 10px;' data-toggle='modal'>
+                                      <span class='glyphicon glyphicon-edit'></span> View
+                                  </a>
+                                  <a href='residentsdh.php?email=" . $row['email'] . "' class='btn btn-sm buttonz rs-btn' style='background-color: #001D3D; color: #ffff; margin-bottom: 10px;'>
+                                      <span class='glyphicon glyphicon-eye-open'></span> History
+                                  </a>
+                                  <a href='#delete_" . $row['id'] . "' class='btn btn-danger btn-sm buttonz rs-btn' style='margin-bottom: 10px;' data-toggle='modal'>
+                                      <span class='glyphicon glyphicon-trash'></span> Delete
+                                  </a>
+                              </td>
+                              
                               </tr>";
                         include('edit_delete_modal.php');
 
@@ -234,15 +249,13 @@ session_start();
                       ?>
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <br>
-          <div style="text-align:center">
-            <a href="#addnew" data-toggle="modal" class="btn btn-primary" style="width: 200px;"><span class="glyphicon glyphicon-plus"></span> Add Residents</a>
-            <br><br><br><br>
-          </div>
+          
         </div>
         <?php include('add_modal.php') ?>
 

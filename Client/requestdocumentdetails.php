@@ -1,3 +1,4 @@
+<?php include 'includes/header-client.php';?>
 <?php require_once "../temp/controllerUserData.php";
 
 
@@ -88,54 +89,7 @@ if ($email != false && $password != false) {
 
 <body>
 
-  <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-
-          <!--  <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a id='noti_number' class="nav-link scrollto active" href="requestsandappointment.php">Notification</a></li>
-
-          <li class="dropdown scrollto" style="color: pink;"><a href="#"><span>Hello, <?php echo $fetch_info['firstName'] ?></span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="profile.php">Profile</a></li>
-
-              <li><a href="requestsandappointment.php">Requests and Appointments</a></li>
-
-              <li><a href="../temp/logout-user.php">Logout</a></li>
-            </ul>
-
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+ 
 
   <script type="text/javascript">
     function loadDoc() {
@@ -279,6 +233,18 @@ if ($email != false && $password != false) {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
+    
+    .btn-submit {
+    background-color: #001D3D; /* Replace with your desired color */
+    color: #FFFFFF; /* Replace with the desired text color */
+  }
+
+  .btn-submit:hover {
+    background-color: #001D3D; /* Replace with your desired color */
+    color: #FFFFFF; /* Replace with the desired text color */
+  }
+
   </style>
 
 
@@ -291,12 +257,6 @@ if ($email != false && $password != false) {
 
 
 
-    <div class="p-4 shadow-4  jbt">
-      <h2 style="color: white;">Request Document</h2>
-      <p class="white" style="font-style:italic; color:aliceblue">
-        Process your barangay IDs, Clearance online
-      </p>
-    </div><br><br><br><br>
 
     <div class="col-md-12 ">
 
@@ -306,20 +266,25 @@ if ($email != false && $password != false) {
 
 
       if ($category == 'bid') {
-        echo '<h2 class="display-4">Request for Barangay ID</h2>';
+        echo '<h2 class="display-6" style="color: #001D3D; font-weight: bold;">Request for Barangay ID</h2>';
+        echo '<h3 class="display-8" style="color: #001D3D;">You must provide a reason for requesting barangay ID</h3>';
         $categ = 'Baranggay ID';
 
         $_SESSION['categ'] = $categ;
       } elseif ($category == 'bc') {
-        echo '<h2 class="display-4">Request for Barangay Clearance</h2>';
+        echo '<h2 class="display-6" style="color: #001D3D; font-weight: bold;">Request Barangay Clearance</h2>';
+        echo '<h3 class="display-8" style="color: #001D3D;">You must provide a reason for requesting Barangay Clearance</h3>';
         $categ = 'Baranggay Clearance';
         $_SESSION['categ'] = $categ;
       } elseif ($category == 'bp') {
-        echo '<h2 class="display-4">Request for Business Permit</h2>';
+        echo '<h2 class="display-6" style="color: #001D3D; font-weight: bold;">Request Business Permit</h2>';
+        echo '<h3 class="display-8" style="color: #001D3D;">You must provide a reason for requesting Business Permit</h3>';
         $categ = 'Business Permit';
         $_SESSION['categ'] = $categ;
       } elseif ($category == 'bldg') {
-        echo '<h2 class="display-4">Request for Building Permit</h2>';
+        echo '<h2 class="display-6" style="color: #001D3D; font-weight: bold;">Request  Barangay Indigency </h2>';
+        echo '<h3 class="display-8" style="color: #001D3D;">You must provide a reason for requesting Barangay Indigency </h3>';
+        
         $categ = 'Building Permit';
         $_SESSION['categ'] = $categ;
       }
@@ -331,54 +296,52 @@ if ($email != false && $password != false) {
       <br><br>
       <div class="container center">
 
-        <form action="#" method="post">
-          <div class="mb-3 mt-3">
-            <label for="comment">Reason for Request:</label>
-            <textarea class="form-control" rows="5" id="comment" name="reason" required></textarea>
-          </div>
+      <form action="#" method="post">
+  <div class="form-group mt-3">
+    <label for="comment">Reason for Request:</label>
+    <textarea class="form-control" rows="5" id="comment" name="reason" required></textarea>
+  </div>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Place of birth:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter birth place" name="birthplace">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Place of birth:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter birth place" name="birthplace">
+      </div>
 
-          </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Period of Residency in Barangay West Rembo:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter residency period" name="period">
+      </div>
 
-          <div class="form-group">
-            <label for="exampleInputEmail1">Period of Residency in Barangay West Rembo:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter residency period" name="period">
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Registered Makati City Voter?</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="voter">
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+    </div>
 
-          </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="exampleInputEmail1">House Owner:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name of house owner" name="houseOwner">
+      </div>
 
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Registered Makati City Voter?</label>
-            <select class="form-control" id="exampleFormControlSelect1" name="voter">
-              <option>Yes</option>
-              <option>No</option>
-             
-            </select>
-          </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Relation to house owner:</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter relationship with owner" name="relation">
+      </div>
+    </div>
+  </div>
 
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">House Owner:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name of house owner" name="houseOwner">
-
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail1">Relation to house owner:</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter birth place" name="relation">
-
-          </div>
-
-
-
-
+  <div class="d-flex justify-content-end mt-3">
+    <button name="request" type="submit" class="btn btn-submit btn-lg">Submit</button>
+  </div>
+</form>
 
 
-          <button name="request" type="submit" class="btn btn-primary">Submit</button>
-
-        </form>
 
         <?php
         if (count($errors) > 0) {

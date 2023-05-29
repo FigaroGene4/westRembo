@@ -1,3 +1,4 @@
+<?php include 'includes/header-client.php';?>
 <?php require_once "../temp/controllerUserData.php";
 
 
@@ -91,54 +92,7 @@ if ($email != false && $password != false) {
 
 <body>
 
-  <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-
-          <!--  <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a id='noti_number' class="nav-link scrollto active" href="requestsandappointment.php">Notification</a></li>
-
-          <li class="dropdown scrollto" style="color: pink;"><a href="#"><span>Hello, <?php echo $fetch_info['firstName'] ?></span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="profile.php">Profile</a></li>
-
-              <li><a href="requestsandappointment.php">Requests and Appointments</a></li>
-
-              <li><a href="../temp/logout-user.php">Logout</a></li>
-            </ul>
-
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
+ 
 
   <script type="text/javascript">
     function loadDoc() {
@@ -282,34 +236,25 @@ if ($email != false && $password != false) {
       white-space: nowrap;
       text-overflow: ellipsis;
     }
+
+    .table-header-bg {
+    background-color: #003566; /* Replace with your desired background color */
+    color: #ffff;
+  }
   </style>
 
 
   <div class="container">
-    <h1 class="display-6"> Documents and Requests</h1><br><br>
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Documents</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Appointment</a>
-      </li>
+  <h2 class="display-6" style="color: #001D3D; font-weight: bold;">Document Request</h2>
 
-    </ul>
 
 
 
     <div class="row">
 
 
-
-
-
-
-
-
       <div class="col-12">
-        <h3> Documents Request</h3>
+        <h3> Here are your Document Requests</h3>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
@@ -317,7 +262,7 @@ if ($email != false && $password != false) {
 
         <body>
           <table data-toggle="table">
-            <thead style="text-align: left;">
+            <thead  class="table-header-bg" style="text-align: left;">
               <tr>
 
                 <th>Transaction Number</th>
@@ -346,7 +291,7 @@ if ($email != false && $password != false) {
       <td>" . $row['date'] . "</td>";
 
                 if ($row['status'] == "For Payment") {
-                  echo "<td>" . $row['status'] . "&nbsp&nbsp&nbsp" . "<a href='payment.php?id=" . $row['id'] . "' class='btn btn-primary'>Pay via GCash</a>
+                  echo "<td>" . $row['status'] . "&nbsp&nbsp&nbsp" . "<a href='payment.php?id=" . $row['id'] . "' class='btn btn-primary'>Pay Cash</a>
         " . "</td></tr>";
                 }
                 else  if ($row['status'] == "For Payment Approval") {
@@ -357,7 +302,7 @@ if ($email != false && $password != false) {
                 }
                 else  if ($row['status'] == "Payment Approved") {
                   $dateTom = date('F d, Y', strtotime($row['dateOfSched']));
-                  echo "<td> Payment Approvedd! Claim Document at ".$dateTom." </td></tr>";
+                  echo "<td> Payment Approved! Claim Document at ".$dateTom." </td></tr>";
                 }
               }
               include('paymodal.php');

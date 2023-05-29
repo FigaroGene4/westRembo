@@ -1,6 +1,7 @@
 <?php require_once "controllerUserData.php"; ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,8 +19,12 @@
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -43,35 +48,89 @@
   ======================================================== -->
 </head>
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+body{
+  font-family: 'Work Sans', sans-serif;
+    background: #ececec;
+}
+
+/*------------ Login container ------------*/
+
+.box-area{
+    width: 1000px;
+    height: 70vh;
+}
+
+/*------------ Right box ------------*/
+
+.right-box{
+    padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder{
+    font-size: 16px;
+}
+
+.rounded-4{
+    border-radius: 20px;
+}
+.rounded-5{
+    border-radius: 30px;
+}
+
+
+/*------------ For small screens------------*/
+
+@media only screen and (max-width: 768px){
+
+     .box-area{
+        margin: 0 10px;
+
+     }
+     .left-box{
+        height: 100px;
+        overflow: hidden;
+     }
+     .right-box{
+        padding: 20px;
+     }
+
+}
+</style>
 <body>
 
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <header>
+        <div class="header-logo">
+            <a href="../index.php"><img src="../wrp-assets/logo-removebg-preview.png" style="width: 214px; height: 85px; margin-left: 120px;"></a>
+        </div>
+    </header>
+   <!----------------------- Main Container -------------------------->
+   <div class="container d-flex justify-content-center align-items-center min-vh-90">
+    <!----------------------- Login Container -------------------------->
+       <div class="row border rounded-5 p-3 bg-white shadow box-area">
+        
+    <!--------------------------- Left Box ----------------------------->
+       <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #001D3D;">
+       
+           <div class="featured-image mb-3">
+            <img src="assets/img/hero-img.png" class="img-fluid" style="width: 250px;">
+           </div>
+           <p class="text-white fs-2" style="font-weight: 600;">Welcome Back</p>
+           <small class="text-white text-wrap text-center" style="width: 17rem;">Stay connected with us</small>
+       </div> 
+    <!-------------------- ------ Right Box ---------------------------->
+        
+       <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+                <div class="header-text mb-4">
+                     <h2 style="font-weight: 600; color:black">Login</h2>
+                     <p>Sign in your account.</p>
 
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-          
-          <li><a class="getstarted scrollto" href="../index.php/#">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-<br><br><br><br><br><br>
-
-    <div class="container"> 
-    <div class="col-md-4 offset-md-4 form login-form">
-                <form action="login-user.php" method="POST" autocomplete="">
-                    <h2 class="text-center">Login</h2>
-                    <p class="text-center">Login with your email and password</p>
-                    <?php
+                     <?php
                     if(count($errors) > 0){
                         ?>
                         <div class="alert alert-danger text-center">
@@ -84,45 +143,42 @@
                         <?php
                     }
                     ?>
-                
-                    <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" type="password" name="password" placeholder="Password" required>
-                    </div>
+                </div>
 
+                <form action="login-user.php" method="POST" autocomplete="">
+                <small class="text-black text-wrap text-center" style="width: 17rem; font-weight: 600; color:black">Email address</small>
+                  <div class="input-group mb-3">
+                      
+                      <input class="form-control" type="email" name="email" placeholder="Enter email address" style="background-color:white; border-color:grey" required value="<?php echo $email ?>">
+                  </div>
+                  <small class="text-black text-wrap text-center" style="width: 17rem; font-weight: 600; color:black">Password</small>
+                  <div class="input-group mb-1">
+                      <input class="form-control" type="password" name="password" placeholder="Enter Password" required>
+                  </div>
+                  <div class="input-group mb-5 d-flex justify-content-between">
+                      <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="formCheck">
+                          <label for="formCheck" class="form-check-label text-secondary"><small>Remember Me</small></label>
+                      </div>
+                      <div class="forgot">
+                          <small><a style="font-weight: 600; color:black" href="#">Forgot Password?</a></small>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                  <input class="form-control button" type="submit" name="login" Style="background: #001D3D; border-color:#001D3D; color:white;" value="Login">
+                  </div>
+                  <div class="input-group mb-3">
                     
-                    <div class="link forget-pass text-left"><a href="forgot-password.php">Forgot password? </a></div>
-                    <div class="form-group">
-                        <input class="form-control button" type="submit" name="login" value="Login">
-                    </div>
+                  </div>
+                  <div class="row">
+                      <small>Don't have account? <a href="../temp/signup.php" style="width: 17rem; font-weight: 600; color:black">Sign Up</a></small>
+                  </div>
+                  </form>
+          </div>
+       </div> 
+      </div>
+    </div>
 
-                    
-                    <div class="link login-link text-center">Not yet a member? <a href="signup-user.php">Signup now</a></div>
-                    
-                </form>
-            </div>
-</div>
-<br><br><br><br><br>
-<?php include '../includes/footer.php';?>
-     
-    
-
-
-
-  
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
 
 </body>
 

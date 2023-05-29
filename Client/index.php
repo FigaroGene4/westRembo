@@ -1,3 +1,4 @@
+<?php include 'includes/header-client.php';?>
 <?php require_once "../temp/controllerUserData.php"; 
 
 
@@ -68,6 +69,10 @@ if($email != false && $password != false){
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+ 
+
 
  
  
@@ -83,487 +88,185 @@ if($email != false && $password != false){
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+  body::before {
+  display: block;
+  content: '';
+  height: 60px;
+}
+
+.navbar {
+  background-color: #001D3D;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: white;
+}
+
+#learn{
+  
+  border-radius: 20px;
+  background-color: #FFC300;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .news-input {
+    width: 50%;
+  }
+}
+
+.smaller-image {
+  max-width: 60%;
+  padding: 0 auto; 
+}
+
+.no-margin {
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  #learn.custom-margin {
+    margin: 50px;
+  }
+}
+
+.btn-primary {
+  background-color: #001D3D;
+  color: #ffffff;
+  border-radius: 10px;
+
+}
+
+.btn-primary:hover {
+
+  background-color: #001D3D;
+}
+</style>
 
 <body>
 
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-          
-        <!--  <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a id='noti_number'class="nav-link scrollto active" href="requestsandappointment.php">Notification</a></li>
-          
-          <li class="dropdown scrollto" style="color: pink;"><a  href="#"><span>Hello, <?php echo $fetch_info['firstName'] ?></span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="profile.php">Profile</a></li>
+    <!-- Showcase -->
+    <section id="learn" class="custom-margin text-dark">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md p-5">
+            <h2>Welcome, <?php echo $fetch_info['firstName'] ?></h2>
+            <p class="lead">
+              Here's your timeline
+            </p>
+            <p>
+             
+            </p>
            
-              <li><a href="requestsandappointment.php">Requests and Appointments</a></li>
-           
-              <li><a href="../temp/logout-user.php">Logout</a></li>
-            </ul>
+          </div>
+          <div class="col-md no-margin">
+        <div class="smaller-image">
+          <img src="../wrp-assets/user-landing.png" class="img-fluid" alt="" />
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Contact & Map -->
+    <section class="p-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md">
+              <h2 class="text-left mb-4">Document Request</h2>
+              <p class="text-left mb-2">Select type of document you want to request</p>
+
+              <img src="../wrp-assets/doc-req.png" class="img-fluid" alt="" />
+          </div>
+
+
+          <div class="col-md">
+            <img src="../wrp-assets/steps1.png" class="img-fluid" alt="" />
+          </div>
+        </div>
+        <div class="row">
+      <div class="col-md">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Request now</button>
+      </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                      <div class="row">
+                          <div class="col-md">
+                             <h5 class="modal-title">Document Request</h5>
+                             <h6 class="modal-sub-title">Select type of document you want to request</h6>
+                          </div>
+                      </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                <a href="requestdocumentdetails.php?category=bid">
+                                  <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="width: 100%; height: 150px; background-color: #7F99B2;">
+                                          <img src="../wrp-assets/card.png" alt="Image" style="max-width: 100%; max-height: 50%;">
+                                          <div class="mt-2">Barangay ID</div>
+                                        
+                                      </div>
+                                </a>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                <a href="requestdocumentdetails.php?category=bc">
+                                  <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="width: 100%; height: 150px; background-color: #FFE799;">
+                                        <img src="../wrp-assets/documentation.png" alt="Image" style="max-width: 100%; max-height: 50%;">
+                                        <div class="mt-2">Clerance</div>
+                                    </div>
+                                </a>
+                                </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                <a href="requestdocumentdetails.php?category=bp">
+                                  <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="width: 100%; height: 150px; background-color: #FFE799;">
+                                              <img src="../wrp-assets/business.png" alt="Image" style="max-width: 100%; max-height: 50%;">
+                                              <div class="mt-2">Business permit</div>
+                                      </div>
+                                </a>
+                                </div>
+                                    <div class="col-md-6 mb-3">
+                                    <a href="requestdocumentdetails.php?category=bldg">
+                                      <div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="width: 100%; height: 150px; background-color: #7F99B2;">
+                                              <img src="../wrp-assets/building.png" alt="Image" style="max-width: 100%; max-height: 50%;">
+                                              <div class="mt-2">Barangay Indigency </div>
+                                          </div>
+                                      </a>
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
+
+                    </div>
             
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-
-  <script type="text/javascript">
- function loadDoc() {
-  
-
-  setInterval(function(){
-
-   var xhttp = new XMLHttpRequest();
-   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("noti_number").innerHTML = this.responseText;
-    }
-   };
-   xhttp.open("GET", "data.php", true);
-   xhttp.send();
-
-  },1000);
-
-
- }
- loadDoc();
-</script>
-<br><br><br><br><br>
-<style>
-  .jbt{
-  background-image: url(assets/img/bl.jpg );
-  
-  
-    
-  background-size:cover;
-  background-position-y: -90px
-
-  
-  
-
-  
-  }
-
-  .containerx {
-      max-width: 900px;
-      background: #6666ff;
-      margin: 40px auto;
-      padding: 30px 20px 30px 20px;
-
-      margin-top: 100px;
-
-      border-radius: 10px;
-      box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.75);
-      color: white;
-    }
-
-
-
-
-
-
-
-.containerz{
-   max-width:220px;
-   
-   background:#6666ff;
-   margin:20px auto;
-   padding:20px 20px 20px 20px;
-   float: left;
-  
-
-   border-radius:10px;
-   box-shadow:0px 2px 2px rgba(0, 0, 0, 0.75);
-   color: white;
-}
-.link{
-   font-size:16px;
-   font-weight:300;
-   text-align:center;
-   position:relative;
-   height:40px;
-   line-height:40px;
-   margin-top:10px;
-   overflow:hidden;
-   width:90%;
-   margin-left:5%;
-   cursor:pointer;
-}
-.link:after{
-   content: '';
-   position:absolute;
-   width:80%;
-   border-bottom:1px solid rgba(255, 255, 255, 0.5);
-   bottom:50%;
-   left:-100%;
-   transition-delay: all 0.5s;
-   transition: all 0.5s;
-}
-.link:hover:after,
-.link.hover:after{
-   left:100%;
-}
-.link .text{
-   text-shadow:0px -40px 0px rgba(255, 255, 255, 1);
-   transition:all 0.75s;
-   transform:translateY(100%) translateZ(0);
-   transition-delay:all 0.25s;
-}
-.link:hover .text,
-.link.hover .text{
-   text-shadow:0px -40px 0px rgba(255, 255, 255, 0);
-   transform:translateY(0%) translateZ(0) scale(1.1);
-   font-weight:600;
-}
-
-a{
-  color: white;
-}
-  
-
-@media screen and (max-width: 799px) {
-   .sidebar {
-       display:block;
-       
-   }
-}
-
-.sidebar a.active{
- 
-  color: yellow;
-  font-weight: bold;
-}
-
-.item{ height:500px;}
-.item img {
-width: 100%;
-height: 100% !important;
-object-fit: cover;}
-
-.fifty-chars {
-    width: 50ch;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-
-
-</style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  
-
-
-
-
-
-<style>
-  .htxt{
-    text-shadow: 1px 1px 1px black;
-    color: white;
-    
-  }
-</style>
-
-
-<div class="container">
-
-
-
-
-<div class="p-4 shadow-4  jbt"    >
-  <h2 class="htxt" ">West Rembo Announcements</h2>
-  <p class="white" style="font-style:italic; color:aliceblue">
-    Daily updates from our community
-  </p><br><br>
-
- 
-
- 
-
-</div>
-
-<div class="col-md-12 text-center">
-
-
-</div>
-
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-
-
-<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-
-
-<style>
-  .t1{
-  
-    color: white;
-  text-shadow: -1px -1px 0 #000, 2px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-  
-
-    
-  }
-
-  .t2{
-   
-    text-shadow: 1px 1px 2px black;
-    font-size: larger;
-  }
-</style>
-<?php 
-include_once("db_conn.php");
-$sql = "SELECT * FROM table_blog ORDER BY id DESC LIMIT 4";
-$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-$image_count = 0;
-$button_html = '';		
-$slider_html = '';	
-$thumb_html = '';
-while( $rows = mysqli_fetch_assoc($resultset)){	
-	$active_class = "";			
-	if(!$image_count) {
-		$active_class = 'active';					
-		$image_count = 1;
-	}	
-	$image_count++;
-	
-	// slider image html
-  $dateOrig = $rows['date'];
-  $cDate = date("F j, Y", strtotime($dateOrig));
-	$slider_html.= "<div class='item ".$active_class."'>";
-    $slider_html.= "<a href='blogpost.php?id=".$rows['id']."'> <img src='../admin/blogimage/".$rows['img']."' alt='1.jpg' class='img-responsive'> </a>
-    
-    <div class='carousel-caption d-none d-md-block'> 
-    <h1 class='display-2 t1  '>".$rows['title']."</h1>
-    <i class='t2'>Date Posted: ".$cDate."</i>
-    
-
-  </div>
-    ";
-    $slider_html.= "<div class='carousel-caption'></div></div>";
-	// Thumbnail html
-
-	// Button html
-	$button_html.= "<li data-target='#carousel-example-generic' data-slide-to='".$image_count."' class='".$active_class."'></li>";
-}
-?>
-
-
-	
-	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="6000">	  
-		<ol class="carousel-indicators">
-		<?php echo $button_html; ?>		
-		</ol>	  
-		<div class="carousel-inner">	  
-			<?php echo $slider_html; ?>
-		</div>	 
-		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-			<span class="glyphicon glyphicon-chevron-left"></span>
-		</a>
-		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-			<span class="glyphicon glyphicon-chevron-right"></span>
-		</a>	 
-		<ul class="thumbnails-carousel clearfix">
-			<?php echo $thumb_html; ?>
-		</ul>
-	</div>	
-</div>
-</div>
-
-
-
-<div class="container" style="text-align:center;">
-<style>
-  @import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800);
-.service-10 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-}
-
-.service-10 h5 {
-    line-height: 26px;
-    font-size: 21px;
-}
-
-.service-10 .font-medium {
-	font-weight: 500;
-}
-
-.service-10 .btn-md {
-    padding: 15px 45px;
-    font-size: 16px;
-}
-
-.service-10 .op-8 {
-	opacity: 0.8;
-}
-
-.service-10 .bg-megna {
-	 background-color: #5BCBDC;
-}
-
-.service-10 .bg-priwary {
-	 background-color: #5B8BDC;
-}
-
-.service-10 .bg-orange {
-	 background-color: #FF7D00;
-}
-
-.service-10 .wrap-service10-box {
-    padding: 100px 20px;
-    width: 100%;
-    max-width: 450px;
-    margin: 0 auto;
-}
-
-.service-10 .btn-outline-light:hover {
-	color: #263238 !important;
-}
-
-
-</style>
-<br><br><br>
-<h1 class="display-1"> Barangay Online Services</h1>
-
-<br><br>
-<div class="service-10">
-    <div class="row no-gutters">
-        <!-- column  -->
-        <div class="col-lg-6 bg-megna">
-            <div class="wrap-service10-box text-center text-white">
-                <div class="display-4 mb-3"><img src="assets/img/contract.png" width="20%"></div>
-                <small class="op-8"></small>
-                <h5 class="text-white">Request A Document</h5>
-                <p class="op-8 my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellent esque dignissim eros a sapien tempus, ut eleifend neque convallis.</p>
-                <a class="btn btn-outline-light btn-md mt-3" href="requestdocument.php"><span>Proceed</span></a>
+                </div>
             </div>
         </div>
-        <!-- column  -->
-        <!-- column  -->
-        <div class="col-lg-6 bg-priwary">
-            <div class="wrap-service10-box text-white text-center">
-            <div class="display-4 mb-3"><img src="assets/img/deadline.png" width="20%"></div>
-                <small class="op-8"></small>
-                <h5 class="text-white">Appointment</h5>
-                <p class="op-8 my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellent esque dignissim eros a sapien tempus, ut eleifend neque convallis.</p>
-                <a class="btn btn-outline-light btn-md mt-3"><span>Proceed</span></a>
-            </div>
-        </div>
-        <!-- column  -->
-        
     </div>
-</div>
 
 
-</div>
 
    
-      
-      
-
-
-        
-
-
-
-
-
-
-    <script src="js1/jquery.min.js"></script>
-    <script src="js1/popper.js"></script>
-    <script src="js1/bootstrap.min.js"></script>
-    <script src="js1/owl.carousel.min.js"></script>
-    <script src="js1/main.js"></script>
-
-
-  
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-<br><br><br><br><br><br><br>
-<?php include '../includes/footer.php';?>
-     
-    
-
-
-
-  
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <script>var links = document.getElementsByClassName('link')
-for(var i = 0; i <= links.length; i++)
-   addClass(i)
-
-
-function addClass(id){
-   setTimeout(function(){
-      if(id > 0) links[id-1].classList.remove('hover')
-      links[id].classList.add('hover')
-   }, id*750) 
-}</script>
-  <!-- Template Main JS File -->
-  <script src="assets1/js/main.js"></script>
-
-   <!-- Vendor JS Files -->
-   <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
