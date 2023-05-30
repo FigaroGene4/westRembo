@@ -120,15 +120,15 @@ session_start();
             <table id="myTable" class="table text-center table-bordered table-striped ">
               <thead>
 
-                
-                <th>Transaction Number</th>
-                <th>Category</th>
-                <th>Reason</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Date of Request</th>
-                <th>Email</th>
-                <th>Action</th>
+
+                <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Transaction Number</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Category</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Reason</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">First Name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Last Name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Date of Request</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Email</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Action</th>
               </thead>
               <tbody>
                 <?php
@@ -155,8 +155,8 @@ session_start();
                
                 
                                   <td>
-                                      <a href='#acceptDoc_" . $row['id'] . "' class='btn btn-info btn-sm buttonz' data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Accept Request</a>
-                                      <a href='#delete_" . $row['id'] . "' class='btn btn-danger btn-sm buttonz' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Decline</a>
+                                  <a href='#acceptDoc_" . $row['id'] . "' class='btn btn-info btn-sm acceptbtn mb-2' style='background-color: #0ead69; color: #fff;'  data-toggle='modal'><span class='glyphicon glyphicon-edit'></span> Accept Request</a>
+                                  <a href='#delete_" . $row['id'] . "' class='btn btn-danger btn-sm deletebtn' style='background-color: #c81d25; color: #fff;' data-toggle='modal'><span class='glyphicon glyphicon-trash'></span> Decline</a>
                                   </td>
                               </tr>";
                   include('edit_delete_modal.php');

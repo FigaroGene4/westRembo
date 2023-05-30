@@ -8,107 +8,112 @@
 		}
 
 	}
+
+	.user-fields{
+		font-size: 20px;
+		font-weight: bold;
+
+	}
+
+	.field-label{
+		font-weight: bold;
+		font-size: 10px;
+		/* Add any other desired font properties */
+	}
 </style>
 
 
 <div class="modal fade" id="edit_<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content wew">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<center>
-					<h4 class="modal-title" id="myModalLabel">Resident Info</h4>
-				</center>
+			<div class="modal-header" style="background-color: #001D3D;">
+			
+				
+			
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-md-12 text-center">
+						<h4 class="modal-title" id="myModalLabel" style="text-align: center; color: #fff;">Resident Info</h4>
+						
+						</div>
+					</div>
+					<!-- Rest of the content -->
+				</div>
+				<button type="button" class="close" data-dismiss="modal" style="color: #ffff;" aria-hidden="true">&times;</button>
+				
 
 			</div>
 
 			<div class="modal-body">
 				<div class="container">
-					<div class="row">
+					<div class="row ">
 
-						<div class="col">
+					<div class="col">
+						<img src="../temp/images/<?php echo $row['image']; ?>" class="rounded-circle" alt="DP" width="300px" height="300px">
+						<br><br>
+						<h2 style="padding-left: 50px; font-weight: bold; text-align: left"><?php echo $row['firstName'] . ' ' . $row['lastName']; ?></h2>
+					</div>
 
+			<div class="col-md-8">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 mb-6">
+					<h3 style="font-weight: bold; font-size: 20px;">First Name:</h3>
+					<span>
+					<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['firstName']; ?>">
 
+					</span>
+					<h3 style="font-weight: bold; font-size: 20px;">Contact Number:</h3>
+					<span>
+						
+						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['contactNumber']; ?>">
+					</span>
+					
+					<h3 style="font-weight: bold; font-size: 20px;">Email:</h3>
+					<span>
+					
+						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['email']; ?>">
+					</span>
+					</div>
+					<div class="col-md-6 mb-4">
+				
+					<h3 style="font-weight: bold; font-size: 20px;">Last Name:</h3>
+					<span>
+						
+						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['lastName']; ?>">
+					</span>
+				
+					<h3 style="font-weight: bold; font-size: 20px;">Birthdate:</h3>
+					<span>
+						
+						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['birthdate']; ?>">
+					</span>
+					
+					<h3 style="font-weight: bold; font-size: 20px;">Address:</h3>
+					<span>
+					<input type="text" name="address" class="form-control" value="<?php echo htmlspecialchars($row['houseNumber'] . ' ' . $row['streetNumber'] . ', Sitio ' . $row['sitio']); ?>">
 
-							<img src="../temp/images/<?php echo $row['image']; ?>" class="rounded-circle" alt="DP" width="300px" height="300px">
-							<br><br>
-							<h2 style="padding-left:10px; font-weight: bold">Name: <?php echo $row['firstName'] . ' ' . $row['lastName']; ?></h2>
-
-
-
-
-
-						</div>
-
-						<div class="col">
-
-							<ul class="nav nav-pills nav-fill">
-								<li class="nav-item">
-									<a class="nav-link active" href="#">Personal Information</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#dh_<?php echo $row['id']; ?>" data-toggle='modal' data-dismiss="modal">Document History </a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#ah_<?php echo $row['id']; ?>" data-toggle='modal' data-dismiss="modal">Booking History</a>
-								</li>
-
-
-
-							</ul>
-
-							<div class="container"><br>
-
-								<h3 style="font-weight: bold">Email: </h3> <span>
-									<h2 style="text-align: inline"> <?php echo $row['email']; ?></h2>
-								</span>
-								<h3 style="font-weight: bold">Contact Number: </h3> <span>
-									<h2 style="text-align: inline"> <?php echo $row['contactNumber']; ?></h2>
-								</span>
-								<h3 style="font-weight: bold">Email: </h3> <span>
-									<h2 style="text-align: inline"> <?php echo $row['email']; ?></h2>
-								</span>
-								<h3 style="font-weight: bold">Birthdate: </h3> <span>
-									<h2 style="text-align: inline"> <?php echo $row['birthdate']; ?></h2>
-								</span>
-								<h3 style="font-weight: bold">Address: </h3> <span>
-									<h2 style="text-align: inline"> <?php echo $row['houseNumber'] . ' ' . $row['streetNumber'] . ', Sitio ' . $row['sitio']; ?></h2>
-								</span>
-
-
-
-
-							</div>
-
-
-						</div>
-
+					
+					</span>
 					</div>
 				</div>
-
-
-
-
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 				<button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</a> </button>
 				</form>
 
 
 			</div>
+</div>
+
+
+			
 		</div>
 	</div>
 </div>
