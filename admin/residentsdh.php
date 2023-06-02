@@ -4,7 +4,10 @@ session_start();
 
 
 ?>
- <?php include 'includes2/header-admin.php';?>
+ <?php include 'includes2/header-admin.php';
+ include_once('db_conn.php');
+ ?>
+ 
 <!DOCTYPE html>
 <html>
 
@@ -55,6 +58,11 @@ session_start();
     line-height: 1.5;
   }
 
+  th {
+    background-color: #001D3D; 
+}
+
+
   </style>
 
 </head>
@@ -64,59 +72,61 @@ session_start();
   <div class="main"><br><br><br>
     <div class="container">
 
+      
       <?php
-      include_once('db_conn.php');
-      $email = $_GET['email'];
-
-      $sql = "SELECT * FROM table_documentrequest WHERE email = '$email'";
-      $result = mysqli_query($conn, $sql);
-
-
-
-      echo '<table class="table table-striped">
-    <thead>
-      <tr>
+      
+        include_once('db_conn.php');
+        $email = $_GET['email'];
         
-        <th scope="col">Transaction Number</th>
-        <th scope="col">Type</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead><tbody>';
-
-      if (mysqli_num_rows($result) > 0) {
-        // output data of each row
-        while ($row = mysqli_fetch_assoc($result)) {
+        $sql = "SELECT * FROM table_documentrequest WHERE email = '$email'";
+        $result = mysqli_query($conn, $sql);
 
 
-          echo '
-            <tr>
-              
-              <td>' . $row['transactionNumber'] . '</td>
-              <td>' . $row['category'] . '</td>
-              <td>' . $row['status'] . '</td>';
 
-          if ($row['status'] == 'Payment Approved') {
-            echo '<td><a class="btn btn-primary" href="printdocument.php?transactionNumber=' . $row['transactionNumber'] .'&category='.$row['category'].  '" role="button">Print</a>
-              
+        echo '<table class="table table-striped">
+      <thead>
+        <tr>
+          
+          <th scope="col">Transaction Number</th>
+          <th scope="col">Type</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead><tbody>';
+
+        if (mysqli_num_rows($result) > 0) {
+          // output data of each row
+          while ($row = mysqli_fetch_assoc($result)) {
+
+
+            echo '
+              <tr>
+                
+                <td>' . $row['transactionNumber'] . '</td>
+                <td>' . $row['category'] . '</td>
+                <td>' . $row['status'] . '</td>';
+
+            if ($row['status'] == 'Payment Approved') {
+              echo '<td><a class="btn btn-primary" href="printdocument.php?transactionNumber=' . $row['transactionNumber'] .'&category='.$row['category'].  '" role="button">Print</a>
+                
+                </td>
+                </tr>
+                
+                ';
+            } else {
+              echo '<td><button type="button" class="btn btn-primary" disabled>Print</button>
+                
               </td>
               </tr>
-              
+
               ';
-          } else {
-            echo '<td><button type="button" class="btn btn-primary" disabled>Print</button>
-              
-            </td>
-            </tr>
-
-            ';
+            }
           }
+        } else {
+          echo "0 results";
         }
-      } else {
-        echo "0 results";
-      }
 
-      mysqli_close($conn);
+        mysqli_close($conn);
 
 
       ?>

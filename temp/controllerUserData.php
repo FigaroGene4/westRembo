@@ -465,7 +465,7 @@ email, date, time, reason, price, category, status, birthplace,period,voter,owne
 
 
     $conn->query($sql);
-    header("Location: requestapproval.php");
+    header("Location: requestapproval2.php");
     
 }
 

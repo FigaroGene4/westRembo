@@ -90,54 +90,6 @@ if($email != false && $password != false){
 </head>
 <body>
 
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-          
-        <!--  <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a id='noti_number'class="nav-link scrollto active" href="requestsandappointment.php">Notification</a></li>
-          
-          <li class="dropdown scrollto" style="color: pink;"><a  href="#"><span>Hello, <?php echo $fetch_info['firstName'] ?></span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="profile.php">Profile</a></li>
-           
-              <li><a href="requestsandappointment.php">Requests and Appointments</a></li>
-           
-              <li><a href="../temp/logout-user.php">Logout</a></li>
-            </ul>
-            
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
 
   <script type="text/javascript">
  function loadDoc() {
@@ -287,14 +239,15 @@ object-fit: cover;}
 
 
 
-<div class="p-4 shadow-4  jbt"    >
+<div class="p-4 shadow-4  jbt " style="background-color: green;">
   <h2  style="color: white;">Request sent! Pleas wait for schedule</h2>
   <p class="white" style="font-style:italic; color:aliceblue">
     Once the administrator accepts your request, we will notify about your schedule
   </p> 
   <br>
   <h4 style="text-align:center; color:aliceblue" >Transaction Number: <?php echo $_SESSION['transactionNumber'];?></h4>
-</div><br><br><br><br>
+</div>
+<br><br><br><br>
 
 
 

@@ -11,7 +11,8 @@
 
 	.user-fields{
 		font-size: 20px;
-		font-weight: bold;
+		font-weight: bold; 
+		padding-bottom: 30px;
 
 	}
 
@@ -20,6 +21,10 @@
 		font-size: 10px;
 		/* Add any other desired font properties */
 	}
+
+	input.form-control {
+   /* Change to your desired background color */
+}
 </style>
 
 
@@ -56,43 +61,43 @@
 					</div>
 
 			<div class="col-md-8">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-6 mb-6">
-					<h3 style="font-weight: bold; font-size: 20px;">First Name:</h3>
-					<span>
-					<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['firstName']; ?>">
+				<div class="container" style="margin-top: 60px;">
+					<div class="row">
+						<div class="col-md-6">
+						<h3 style="font-weight: bold; font-size: 20px;">First Name:</h3>
+						<span>
+						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['firstName']; ?>">
 
-					</span>
-					<h3 style="font-weight: bold; font-size: 20px;">Contact Number:</h3>
-					<span>
+						</span>
+						<h3 style="font-weight: bold; font-size: 20px;">Contact Number:</h3>
+						<span>
+							
+							<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['contactNumber']; ?>">
+						</span>
 						
-						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['contactNumber']; ?>">
-					</span>
-					
-					<h3 style="font-weight: bold; font-size: 20px;">Email:</h3>
-					<span>
-					
-						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['email']; ?>">
-					</span>
-					</div>
-					<div class="col-md-6 mb-4">
-				
-					<h3 style="font-weight: bold; font-size: 20px;">Last Name:</h3>
-					<span>
+						<h3 style="font-weight: bold; font-size: 20px;">Email:</h3>
+						<span>
 						
-						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['lastName']; ?>">
-					</span>
-				
-					<h3 style="font-weight: bold; font-size: 20px;">Birthdate:</h3>
-					<span>
-						
-						<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['birthdate']; ?>">
-					</span>
+							<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['email']; ?>">
+						</span>
+						</div>
+						<div class="col-md-6 mb-4">
 					
-					<h3 style="font-weight: bold; font-size: 20px;">Address:</h3>
-					<span>
-					<input type="text" name="address" class="form-control" value="<?php echo htmlspecialchars($row['houseNumber'] . ' ' . $row['streetNumber'] . ', Sitio ' . $row['sitio']); ?>">
+						<h3 style="font-weight: bold; font-size: 20px;">Last Name:</h3>
+						<span>
+							
+							<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['lastName']; ?>">
+						</span>
+					
+						<h3 style="font-weight: bold; font-size: 20px;">Birthdate:</h3>
+						<span>
+							
+							<input type="text" name="firstNameClient" class="form-control user-fields" value="<?php echo $row['birthdate']; ?>">
+						</span>
+						
+						<h3 style="font-weight: bold; font-size: 20px;">Address:</h3>
+						<span>
+						<input type="text" name="address" class="form-control" value="<?php echo htmlspecialchars($row['houseNumber'] . ' ' . $row['streetNumber'] . ', Sitio ' . $row['sitio']); ?>">
 
 					
 					</span>
@@ -105,7 +110,7 @@
 </div>
 <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-				<button type="submit" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Update</a> </button>
+				<button type="submit" name="edit" class="btn btn-success" style="background-color:  #001D3D; border-color:  #001D3D;"><span class="glyphicon glyphicon-check"></span> Update</a> </button>
 				</form>
 
 
