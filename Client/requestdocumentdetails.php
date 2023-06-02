@@ -115,9 +115,7 @@ if ($email != false && $password != false) {
   <br><br><br><br><br>
   <style>
     .jbt {
-      background-image: url(assets/img/reqsdoc.jpg);
-      background-repeat: no-repeat;
-      background-size: cover;
+      background-color: green;
 
 
     }
