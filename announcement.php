@@ -43,7 +43,7 @@ h1{
 
 <div class="container">
   <div class="p-4 shadow-4 jbt">
-    <h2 class="htxt custom-heading">West Rembo News and Announcements</h2>
+    <h2 class="htxt custom-heading">News and Announcements</h2>
     <p class="custom-paragraph" style="font-style: italic;">
       Daily updates from our community
     </p>
