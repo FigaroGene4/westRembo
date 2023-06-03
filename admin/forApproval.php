@@ -4,6 +4,7 @@ session_start();
 
 
 ?>
+ <?php include 'includes2/header-admin.php';?>
 <!DOCTYPE html>
 <html>
 
@@ -38,6 +39,19 @@ session_start();
       position: relative;
       top: 7px
     }
+    .sidebar {
+    width: 250px; 
+    padding: 20px; 
+  }
+
+  .sidebar a {
+    display: block;
+    margin-bottom: 10px; 
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    line-height: 1.5;
+  }
   </style>
 
 </head>
@@ -45,56 +59,6 @@ session_start();
 <body>
 
 
-
-  <nav class="navbar navbar-light bg-light fixed-top ">
-    <style>
-      a {
-        color: black;
-      }
-
-      a:hover {
-        color: violet;
-      }
-
-      .dropdown-menu {
-        padding: 15px;
-
-      }
-    </style>
-
-    <a class="navbar-brand" href="home.php" style="padding-left: 10px;"> <img src="logowr.png" width="20px"> </a>
-    <a class="navbar-brand">Hello, <?php echo $_SESSION['name']; ?></a>
-    <a class="navbar-brand navbar-right .active   " href="createadmin.php"></a>
-    <a class="navbar-brand navbar-right  " href="changepassword.php"> </a>
-    <a class="navbar-brand navbar-right  " href="logout.php" style="margin-left: auto"></a>
-    <div class="dropdown droptxt">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin Settings
-        <span class="caret"></span></button>
-      <ul class="dropdown-menu droptxt">
-        <li><a href="createadmin.php">Create Admin Account</a></li>
-        <li><a href="changepassword.php">Reset Password</a></li>
-        <div class="dropdown-divider"></div>
-        <li><a href="logout.php">Logout</a></li>
-    </div>
-    </ul>
-    </div>
-  </nav>
-
-  <div class="sidebar">
-<br><br><br><br>
-
-<a href="residents.php ">Residents</a>
-<!--<a href="artist.php">Artist</a> -->
-<a href="docrequest.php">Document Requests</a>
-<a href="payment.php">Payment</a>
-<a href="pricing.php">Pricing</a>
-<a href="report.php">Reports</a>
-<!--<a href="refund.php">Refund</a>
-<a href="payartist.php">Pay Artist</a> -->
-<a href="Blog.php">CMS</a>
-</div>
-
-  </div>
 
   <div class="main">
 
@@ -158,20 +122,19 @@ session_start();
               <thead>
 
                 
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Contact Number</th>
-                <th>House Number</th>
-                <th>Street</th>
-                <th>Sitio</th>
-                <th>Email Status</th>
-                <th>Code</th>
-                <th>Date Joined</th>
-                <th>Validation Requirement</th>
+              <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">First name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Last name</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Email</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Contact Number</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">House Number</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Street</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Sitio</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Status</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Date joined</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Validation Requirement</th>
+                      <th style="background-color: #001D3D; color: #ffff; padding-bottom: 20px;">Action</th>
 
-                <th>Action</th>
-
+             
               </thead>
               <tbody>
                 <?php

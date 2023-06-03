@@ -19,8 +19,8 @@ h1{
     font-weight: 400;
 }
 
-.card-img-top{
- 
+.custom-image{
+  width: 100%;
 }
 </style>
 <!--body-->
@@ -43,7 +43,7 @@ to our community.</p>
   <div class="col-sm d-flex align-items-center">
     <div class="card-transparent border-0">
       <div class="card-body">
-      <img class="card-img-top" src="wrp-assets/deviceframes.png" alt="" >
+      <img class="card-img-top custom-image" src="wrp-assets/deviceframes1.png" alt="" >
       </div>
     </div>
   </div>
