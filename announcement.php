@@ -9,7 +9,7 @@
 h1{
 
     color: #000814;
-	font-family: 'Work Sans', sans-serif;
+	  font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: 700;
 }
