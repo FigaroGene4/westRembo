@@ -1,5 +1,7 @@
 <?php require_once "controllerUserData.php"; ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,165 +45,163 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@font-face{
+    src: url(css/fonts/WorkSans-Regular.ttf);
+}
+
+.text-center{
+  font-weight: bolder;
+  font-family: 'Work Sans', sans-serif;
+  color:  #001D3D;
+}
+
+
+  body{
+    background: linear-gradient(45deg, #7F99B2, #FFE799);
+
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .col-md-12.form{
+    border-radius: 20px;
+    margin-top: 30px;
+    height: auto;
+  }
+
+  
+</style>
 
 <body>
 
-  <header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-          
-          <li><a class="getstarted scrollto" href="../index.php/#">Get Started</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
-  <br><br><br><br><br>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 offset-md-4 form">
-        <form action="signup-user.php" method="POST" autocomplete="" enctype="multipart/form-data">
-          <h2 class="text-center">Create an Account</h2>
-          <p class="text-center">Enter your credentials</p>
-          <?php
-          if (count($errors) == 1) {
-          ?>
-            <div class="alert alert-danger text-center">
-              <?php
-              foreach ($errors as $showerror) {
-                echo $showerror;
-              }
-              ?>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 form">
+      <form action="signup-user.php" method="POST" autocomplete="" enctype="multipart/form-data">
+        <h2 class="text-center">Create an Account</h2>
+        <p class="text-center">Enter your credentials</p>
+        <?php
+        if (count($errors) == 1) {
+        ?>
+          <div class="alert alert-danger text-center">
+            <?php
+            foreach ($errors as $showerror) {
+              echo $showerror;
+            }
+            ?>
+          </div>
+        <?php
+        } elseif (count($errors) > 1) {
+        ?>
+          <div class="alert alert-danger">
+            <?php
+            foreach ($errors as $showerror) {
+            ?>
+              <li><?php echo $showerror; ?></li>
+            <?php
+            }
+            ?>
+          </div>
+        <?php
+        }
+        ?>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="firstName" style="font-weight: bold; color: #001D3D;">First Name</label>
+              <input class="form-control" type="text" name="firstName" placeholder="First Name" required value="<?php echo $firstName ?>">
             </div>
-          <?php
-          } elseif (count($errors) > 1) {
-          ?>
-            <div class="alert alert-danger">
-              <?php
-              foreach ($errors as $showerror) {
-              ?>
-                <li><?php echo $showerror; ?></li>
-              <?php
-              }
-              ?>
+            <div class="form-group">
+              <label for="lastName" style="font-weight: bold; color: #001D3D;">Last Name</label>
+              <input class="form-control" type="text" name="lastName" placeholder="Last Name" required value="<?php echo $lastName ?>">
             </div>
-          <?php
-          }
-          ?>
-          <div class="form-group">
-            <input class="form-control" type="text" name="firstName" placeholder="First Name" required value="<?php echo $firstName ?>">
+            <div class="form-group">
+              <label for="email" style="font-weight: bold; color: #001D3D;">Email Address</label>
+              <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
+            </div>
           </div>
-          <div class="form-group">
-            <input class="form-control" type="text" name="lastName" placeholder="Last Name" required value="<?php echo $lastName ?>">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="contactNumber" style="font-weight: bold; color: #001D3D;">Contact Number</label>
+              <input class="form-control" type="number" name="contactNumber" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="Contact Number" required value="<?php echo $contactNumber ?>">
+            </div>
+            <div class="form-group">
+              <label for="birthdate" style="font-weight: bold; color: #001D3D;">Birthdate</label>
+              <input class="form-control" type="date" name="birthdate" placeholder="Birthdate" required value="<?php echo $birthdate ?>">
+            </div>
+            <div class="form-group">
+              <label for="gender" style="font-weight: bold; color: #001D3D;">Gender</label>
+              <select class="custom-select" name="gender" required value="<?php echo $gender ?>">
+                <option selected>
+                  <?php 
+                  if(isset($city)){
+                    echo $city;
+                   } 
+                    if($city ==''){
+                      echo 'Please Select a Gender';
+                     } 
+                  ?>
+                </option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
           </div>
-          <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="houseNumber" style="font-weight: bold; color: #001D3D;">House Number</label>
+              <input class="form-control" type="text" name="houseNumber" placeholder="House Number" required value="<?php echo $houseNumber ?>">
+            </div>
+            <div class="form-group">
+              <label for="streetNumber" style="font-weight: bold; color: #001D3D;">Street Name</label>
+              <input class="form-control" type="text" name="streetNumber" placeholder="Street Name" required value="<?php echo $streetNumber ?>">
+            </div>
+            <div class="form-group">
+              <label for="sitio" style="font-weight: bold; color: #001D3D;">Sitio</label>
+              <input class="form-control" type="number" name="sitio" placeholder="Sitio" required value="<?php echo $sitio ?>">
+            </div>
           </div>
-
-         
-
-          <div class="form-group">
-            <input class="form-control" type="number" name="contactNumber"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="Contact Number" required value="<?php echo $contactNumber?> ">
-          </div><br>
-
-          <div class="form-group">
-          <label for="custom-select">Date of birth:</label><br>
-            <input class="form-control" type="date" name="birthdate" placeholder="Email Address" required value="<?php echo $birthdate ?>">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="password" style="font-weight: bold; color: #001D3D;">Password</label>
+              <input class="form-control" type="password" name="password" placeholder="Password" required>
+            </div>
           </div>
-          
-          <label for="custom-select">Gender:</label><br>
-          <select class="custom-select" name="gender" required value="<?php echo $gender ?>">
-            
-            <option  selected><?php 
-            if(isset($city)){
-              echo $city;
-             } 
-              if($city ==''){
-                echo 'Please Select a Gender';
-               } 
-              
-
-            
-            
-            ?></option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="LGBT+">LGBT+</option>
-          </select>
-          <br>
-          <div class="form-group">
-            <input class="form-control" type="text" name="houseNumber" placeholder="House Number " required value="<?php echo $houseNumber ?>">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="cpassword" style="font-weight: bold; color: #001D3D;">Confirm Password</label>
+              <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
+            </div>
           </div>
-          <div class="form-group">
-            <input class="form-control" type="text" name="streetNumber" placeholder="Street Name" required value="<?php echo $streetNumber ?>">
-          </div>
-
-          <div class="form-group">
-            <input class="form-control" type="number" name="sitio" placeholder="Sitio" required value="<?php echo $sitio ?>">
-          </div>
-          <div class="form-group"><br>
-            <input class="form-control" type="password" name="password" placeholder="Password" required>
-          </div>
-          <div class="form-group">
-            <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
-          </div>
-          <label for="" style="font-size:13px" >&nbspPassword must be 8 characters minimum with an uppercase and a number</label>
-          <br><br>
-
-          <div class="field image">
-            <label>Upload Profile Picture</label>
-            <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
-          </div>
-          <br>
-          <br>
-
-          <div class="tacbox">
-            <input id="checkbox" type="checkbox" required />
-            <label for="checkbox"> I agree to these <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a>.</label>
-          </div>
-          <br>
-          <div class="form-group">
-            <input class="form-control button" type="submit" name="signup" value="Signup">
-          </div>
-          <div class="link login-link text-center">Already a member? <a href="login-user.php">Login here</a></div>
-        </form>
-      </div>
+        </div>
+        <label for="" style="font-size:13px">&nbsp;Password must be 8 characters minimum with an uppercase and a number</label>
+        <div class="field image">
+          <label for="image" style="font-weight: bold; color: #001D3D;">Upload Profile Picture</label>
+          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+        </div>
+        <div class="tacbox">
+          <input id="checkbox" type="checkbox" required />
+          <label for="checkbox"> I agree to these <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a>.</label>
+        </div>
+        <br>
+        <div class="form-group d-flex justify-content-center">
+          <input class="form-control button" type="submit" name="signup" value="Signup" style="width: 150px; background-color: #001D3D;">
+        </div>
+        <div class="link login-link text-center">Already a member? <a style="" href="login-user.php">Login here</a></div>
+      </form>
     </div>
   </div>
-
-  <br>
-  <?php include '../includes/footer.php'; ?>
+</div>
 
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Terms and Conditions</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h2> SPA2GO and its proponents </h2>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 

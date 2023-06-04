@@ -171,7 +171,7 @@ body{
                     
                   </div>
                   <div class="row">
-                      <small>Don't have account? <a href="../temp/signup.php" style="width: 17rem; font-weight: 600; color:black">Sign Up</a></small>
+                      <small>Don't have account? <a href="../temp/signup-user.php" style="width: 17rem; font-weight: 600; color:black">Sign Up</a></small>
                   </div>
                   </form>
           </div>
