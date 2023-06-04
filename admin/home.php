@@ -58,26 +58,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
       
     }
 
-    .sidebar {
-    width: 250px; /* Modify the width of the sidebar as needed */
-    padding: 20px; /* Add padding to create space around the links */
-  }
-
-  .sidebar a {
-    display: block;
-    margin-bottom: 10px; /* Add margin bottom for spacing between links */
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
- 
 
 .custom-heading {
     color: #001D3D;
     font-size: 20px;
-    padding: 10px;
+ 
     font-weight:  bolder;
     
   }
@@ -96,9 +81,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
   .dslabel2{
     color: #001D3D;
     font-size: 20px;
-    padding: 10px;
+ 
     font-weight:  bolder;
   }
+  
   </style>
 <body>
 
@@ -106,7 +92,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
   <h2 class="dblabel">Dashboard</h2>
   <div class="container" style="text-align: center">
     <div class="row">
-
       <div class="col-lg-4 col-md-6 col-sm-12 border border-white m-3 bg-white" style="height: 200px; border-radius: 20px;">
         <img src="../wrp-assets/community.png" class="avatar" style="position: absolute; top: 10px; left: 10px; margin-right: 10px; margin-bottom: 10px;">
         <div class="col-md-12 custom-heading text-center ml-4 mt-4">
@@ -155,40 +140,39 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
         </h2>
         <br><br>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12 border border-white m-3 bg-white" style="height: 200px; border-radius: 20px;">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-12 border border-white m-3 bg-white" style="height: 200px; border-radius: 20px;">
+        <div class="col-md-12 custom-heading text-center ml-4 mt-4">
+          <h2 class="dslabel2">Month's payment</h2>
+        </div>
+        <img src="../wrp-assets/profit.png" style="position: absolute; top: 10px; left: 10px; margin-right: 10px; margin-bottom: 10px; width: 95px; height: 95px;">
+        <h2>
+          <?php
+          $sql = "SELECT sum(price) as amount FROM table_documentrequest WHERE status = 'Payment Approved' OR status ='Paid'";
+          $result = $conn->query($sql);
+          while ($row = mysqli_fetch_assoc($result)) {
+            echo '₱' . $row['amount'];
+          }
+          ?>
+        </h2>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-12 border border-white m-3 bg-white" style="height: 200px; border-radius: 20px;">
+        <div class="col">
           <div class="col-md-12 custom-heading text-center ml-4 mt-4">
-            <h2 class="dslabel2">Month's payment</h2>
+            <h2 class="dslabel2">Total Transaction</h2>
           </div>
-          <img src="../wrp-assets/profit.png" style="position: absolute; top: 10px; left: 10px; margin-right: 10px; margin-bottom: 10px; width: 95px; height: 95px;">
+          <img src="../wrp-assets/transaction.png" style="position: absolute; top: 10px; left: 10px; margin-right: 10px; margin-bottom: 10px; width: 95px; height: 95px;">
           <h2>
             <?php
-            $sql = "SELECT sum(price) as amount FROM table_documentrequest WHERE status = 'Payment Approved' OR status ='Paid'";
-            $result = $conn->query($sql);
-            while ($row = mysqli_fetch_assoc($result)) {
-              echo '₱' . $row['amount'];
-            }
+            $q = "SELECT * FROM table_documentrequest WHERE status='Payment Approved'";
+            $res = mysqli_query($conn, $q);
+            echo mysqli_num_rows($res);
             ?>
           </h2>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12 border border-white m-3 bg-white" style="height: 200px; border-radius: 20px;">
-          <div class="col">
-            <div class="col-md-12 custom-heading text-center ml-4 mt-4">
-              <h2 class="dslabel2">Total Transaction</h2>
-            </div>
-            <img src="../wrp-assets/transaction.png" style="position: absolute; top: 10px; left: 10px; margin-right: 10px; margin-bottom: 10px; width: 95px; height: 95px;">
-            <h2>
-              <?php
-              $q = "SELECT * FROM table_documentrequest WHERE status='Payment Approved'";
-              $res = mysqli_query($conn, $q);
-              echo mysqli_num_rows($res);
-              ?>
-            </h2>
-          </div>
-        </div>
       </div>
-
     </div>
 
     <div class="col-lg-12">
