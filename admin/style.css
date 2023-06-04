@@ -17,48 +17,13 @@
 
   }
 
-
-  .sidenav{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 2; /* Stay on top */
-    top: 1; /* Stay at the top */
-    left: 0;
-    background-color: whitesmoke; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 70px;
-    
-  }
-
-  .sidebar {
-    width: 250px; /* Modify the width of the sidebar as needed */
-    padding: 20px; /* Add padding to create space around the links */
-  }
-
-  .sidebar a {
-    display: block;
-    margin-bottom: 10px; /* Add margin bottom for spacing between links */
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  
-
-  /* Style page content */
   .main{
-    margin-left: 120px; /* Same as the width of the sidebar */
-    padding-left: 0px 10px;
-    background-color: whitesmoke;
-    
-    
-    
+    margin-left: 250px;
+    transition: all 0.3s ease;
+    background-color: #f0f0f0;
   }
 
   .dblabel{
-    padding-left: 150px;
     padding-top: 130px;
     padding-bottom: 30px;
     font-weight: bold;
@@ -96,13 +61,14 @@
 
   /* The side navigation menu */
 .sidebar {
-  margin: 0;
-  padding: 0;
-  width: 120px;
-  background-color: #ffffff;
   position: fixed;
-  height: 100%;
-  overflow: auto;
+  top: 30px;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: all 0.3s ease;
 }
 
 /* Sidebar links */

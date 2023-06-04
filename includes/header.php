@@ -30,16 +30,16 @@
         <li class="nav-item"><a href="about.php" class="nav-link" style="color: black; margin-top:10px;">About Us</a></li>
         <li class="nav-item"><a href="officials.php" class="nav-link" style="color: black; margin-top:10px;">Officials</a></li>
         <li class="nav-item"><a href="announcement.php" class="nav-link" style="color: black; margin-top:10px;">Announcement</a></li>
-        <a class="btn btn-primary" href="#" role="button" style="font-size: 25px;
-    width:  200px;
-    height: 80px;
+        <a class="btn btn-primary" href="temp/signup-user.php" role="button" style="font-size: 25px;
+    width:  210px;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #001D3D;
     border-radius: 20px;
     color: #fff;
-    ">Get Started</a>
+    ">Sign up</a>
       </ul>
     </header>
   </div>

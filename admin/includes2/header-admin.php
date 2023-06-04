@@ -25,10 +25,7 @@
       
     }
 
-    .sidebar {
-      width: 100%; /* Modify the width of the sidebar as needed */
-      background-color: #f8f9fa; /* Add a background color to the sidebar */
-    }
+    
 
     .sidebar a {
       display: block;
@@ -39,13 +36,7 @@
       line-height: 1.5;
     }
 
-    @media (min-width: 768px) {
-      /* Adjust sidebar width for larger viewports */
-      .sidebar {
-        width: 250px;
-      }
-    }
-
+   
 .custom-heading {
     color: #001D3D;
     font-size: 20px;
@@ -82,13 +73,6 @@
     <img src="../wrp-assets/logo-removebg-preview.png" style="width: 220px; height: 85px; padding-left: 30px;">
   </div>
 
-
-
-
-
-
-
-          
             <div class="dropdown droptxt" >
             <a class="navbar-brand" style="color: 001D3D;"><strong><?php echo $_SESSION['name']; ?></strong></a>
 

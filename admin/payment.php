@@ -31,20 +31,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
 
     </head>
     <style>
-        .sidebar {
-    width: 250px; 
-    padding: 20px; 
-  }
-
-  .sidebar a {
-    display: block;
-    margin-bottom: 10px; 
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
+     
     </style>
 
     <body>

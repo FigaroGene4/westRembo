@@ -41,44 +41,30 @@ session_start();
       position: relative;
       top: 7px
     }
+ .main{
+    margin-left: 250px;
+    transition: all 0.3s ease;
+    background-color: #f0f0f0;
+  }
 
     
 .custom-heading {
   font-size: 30px;
   color: #001D3D;
   padding-top: 50px;
-  /* Add any other custom styles you want */
+  
 }
-
-
-
-.sidebar {
-    width: 250px; 
-    padding: 20px; 
-  }
-
-  .sidebar a {
-    display: block;
-    margin-bottom: 10px; 
-    text-decoration: none;
-    color: #000;
-    font-size: 16px;
-    line-height: 1.5;
-  }
 
   .nav-item {
   background-color: #ffff;
 
-  /* Add any other custom styles you want */
+
 }
 
 
 .custom-tab{
   font-size: 15px;
   color: #001D3D;
-
-
-  /* Add any other custom styles for the tab links */
 }
 
 .nav-link.active{
@@ -105,22 +91,16 @@ session_start();
 
 <body>
 
-
-
-
-
-  <div class="main">
-
+<div class="main">
     <div class="container">
       <br><br><br>
-     
       <div class="row">
-    <div class="col-md-6">
-        <div class="column">
-            <div class="head">
-                <h1 class="page-header text-left custom-heading">Residents' Information</h1>
+        <div class="col-md-6">
+            <div class="column">
+                <div class="head">
+                    <h1 class="page-header text-left custom-heading">Residents' Information</h1>
+                </div>
             </div>
-        </div>
     </div>
     <div class="col-md-6">
         <div class="add-residents" style="margin-top: 50px;">
@@ -131,7 +111,6 @@ session_start();
           
         </div>
     </div>
-</div>
 
 
 
@@ -254,6 +233,7 @@ session_start();
               </div>
             </div>
           </div>
+        </div>
           <br>
           
         </div>

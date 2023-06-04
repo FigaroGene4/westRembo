@@ -1,7 +1,6 @@
 <?php require_once "controllerUserData.php"; ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,12 +77,15 @@
 
 <body>
 
-
 <div class="container">
   <div class="row">
     <div class="col-md-12 form">
       <form action="signup-user.php" method="POST" autocomplete="" enctype="multipart/form-data">
-        <h2 class="text-center">Create an Account</h2>
+      <div class="row justify-content-center">
+            <div class="col-md-4 text-center">
+                <a href="../index.php"><img src="../wrp-assets/logo-removebg-preview.png" style="width: 214px; height: 85px;"></a>
+            </div>
+        </div>
         <p class="text-center">Enter your credentials</p>
         <?php
         if (count($errors) == 1) {
@@ -172,33 +174,46 @@
             <div class="form-group">
               <label for="password" style="font-weight: bold; color: #001D3D;">Password</label>
               <input class="form-control" type="password" name="password" placeholder="Password" required>
+               <label for="" style="font-size:13px">&nbsp;Password must be 8 characters minimum with an uppercase and a number</label>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="cpassword" style="font-weight: bold; color: #001D3D;">Confirm Password</label>
               <input class="form-control" type="password" name="cpassword" placeholder="Confirm password" required>
+              
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="field image">
+              <label for="image" style="font-weight: bold; color: #001D3D;">Upload Profile Picture</label>
+              <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+              
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="tacbox">
+            <input id="checkbox" type="checkbox" required />
+            <label for="checkbox"> I agree to these <a href="#" data-toggle="modal" data-target="#exampleModalLong" style="color: #FFC300; font-weight: bolder;">Terms and Conditions</a>.</label>
+          </div>
+          </div>
         </div>
-        <label for="" style="font-size:13px">&nbsp;Password must be 8 characters minimum with an uppercase and a number</label>
-        <div class="field image">
-          <label for="image" style="font-weight: bold; color: #001D3D;">Upload Profile Picture</label>
-          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+       
+        <div class="row">
+          
         </div>
-        <div class="tacbox">
-          <input id="checkbox" type="checkbox" required />
-          <label for="checkbox"> I agree to these <a href="#" data-toggle="modal" data-target="#exampleModalLong">Terms and Conditions</a>.</label>
-        </div>
+      
         <br>
         <div class="form-group d-flex justify-content-center">
-          <input class="form-control button" type="submit" name="signup" value="Signup" style="width: 150px; background-color: #001D3D;">
+          <input class="form-control button" type="submit" name="signup" value="Signup" style="width: 250px; background-color: #001D3D; font-weight: bolder;">
         </div>
-        <div class="link login-link text-center">Already a member? <a style="" href="login-user.php">Login here</a></div>
+        <div class="link login-link text-center">Already a member? <a style="color: #FFC300;" href="login-user.php">Login here</a></div>
+
       </form>
     </div>
   </div>
 </div>
+
 
 
 
