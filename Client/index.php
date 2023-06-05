@@ -60,7 +60,9 @@ if($email != false && $password != false){
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
@@ -89,10 +91,22 @@ if($email != false && $password != false){
   ======================================================== -->
 </head>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@font-face{
+    src: url(css/fonts/WorkSans-Regular.ttf);
+}
   body::before {
   display: block;
   content: '';
   height: 60px;
+}
+p{
+  margin:3px;
+  color: black;
+
 }
 
 .navbar {
@@ -121,14 +135,6 @@ if($email != false && $password != false){
   }
 }
 
-.smaller-image {
-  max-width: 60%;
-  padding: 0 auto; 
-}
-
-.no-margin {
-  margin: 0;
-}
 
 @media (min-width: 1200px) {
   #learn.custom-margin {
@@ -159,27 +165,46 @@ if($email != false && $password != false){
 
 
     <!-- Showcase -->
-    <section id="learn" class="custom-margin text-dark">
-      <div class="container">
-        <div class="row align-items-center justify-content-between">
-          <div class="col-md p-5">
-            <h2>Welcome, <?php echo $fetch_info['firstName'] ?></h2>
-            <p class="lead">
-              Here's your timeline
-            </p>
-            <p>
-             
-            </p>
-           
-          </div>
-          <div class="col-md no-margin">
+<section id="learn" class="custom-margin text-dark">
+  <div class="container">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-md p-5">
+        <h2 style="color: #001D3D;">Welcome, <span style="font-weight: bold;"><?php echo $fetch_info['firstName'] ?></span></h2>
+        <h2 class="lead" style="color: #001D3D;">
+          Here's your timeline
+        </p>
+        <br>
+        <!-- Document Request Info -->
+        
+        <?php
+  include_once('db_conn.php');
+  $sql = "SELECT * FROM table_documentrequest WHERE email = '$email' ORDER BY id DESC LIMIT 1";
+  $query = $conn->query($sql);
+  if ($row = $query->fetch_assoc()) {
+    $id = $row['id'];
+    echo "<p><strong><i class='bi bi-file-earmark-fill' style='color: #001D3D'></i> Transaction Number:</strong> " . $row['transactionNumber'] . "</p>";
+
+
+    echo "<p><strong><i class='bi bi-file-earmark-text-fill ' style='color: #001D3D'></i> Category:</strong> " . $row['category'] . "</p>";
+    echo "<p><strong><i class='bi bi-calendar-fill' style='color: #001D3D'></i> Date Submitted:</strong> " . $row['date'] . "</p>";
+    echo "<p><strong><i class='bi bi-check-circle-fill' style='color: #001D3D'></i> Status:</strong> " . $row['status'] . "</p>";
+  } else {
+    echo "<p>No Document Request Found</p>";
+  }
+?>
+
+        <!-- End of Document Request Info -->
+
+      </div>
+      <div class="col-md no-margin">
         <div class="smaller-image">
-          <img src="../wrp-assets/user-landing.png" class="img-fluid" alt="" />
+          <img src="../wrp-assets/imgwelcome.png" class="img-fluid" alt="" style="width: 150%; object-fit: cover;" />
         </div>
       </div>
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
 
     <!-- Contact & Map -->
