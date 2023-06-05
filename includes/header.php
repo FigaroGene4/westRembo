@@ -29,17 +29,17 @@
         <li class="nav-item"><a href="index.php" class="nav-link" style="color: black; margin-top:10px;">Home</a></li>
         <li class="nav-item"><a href="about.php" class="nav-link" style="color: black; margin-top:10px;">About Us</a></li>
         <li class="nav-item"><a href="officials.php" class="nav-link" style="color: black; margin-top:10px;">Officials</a></li>
-        <li class="nav-item"><a href="announcement.php" class="nav-link" style="color: black; margin-top:10px;">Announcement</a></li>
         <a class="btn btn-primary" href="temp/signup-user.php" role="button" style="font-size: 25px;
-    width:  210px;
-    height: 70px;
+    width:  180px;
+    height: 55px;
     display: flex;
     justify-content: center;
+    margin-top: 10px;
     align-items: center;
     background-color: #001D3D;
     border-radius: 20px;
     color: #fff;
-    ">Sign up</a>
+    ">Register</a>
       </ul>
     </header>
   </div>

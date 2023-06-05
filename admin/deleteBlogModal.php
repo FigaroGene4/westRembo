@@ -2,9 +2,10 @@
 <div class="modal fade" id="delete_<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+        <div class="modal-header" style="background-color: #001D3D; text-align: center;">
+                
+                <h4 class="modal-title"  style="color: #FFFF;" id="myModalLabel">Delete Member</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <center><h4 class="modal-title" id="myModalLabel">Delete Member</h4></center>
             </div>
             <div class="modal-body">	
             	<p class="text-center">Are you sure you want to Delete</p>

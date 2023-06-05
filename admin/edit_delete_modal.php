@@ -19,12 +19,21 @@
 	.field-label{
 		font-weight: bold;
 		font-size: 10px;
-		/* Add any other desired font properties */
+	
 	}
 
 	input.form-control {
-   /* Change to your desired background color */
+  
 }
+
+.modal-title {
+    text-align: center;
+    color: #FFFF;
+
+  }
+
+  
+
 </style>
 
 
@@ -328,11 +337,12 @@
 <div class="modal fade" id="delete_<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<center>
-					<h4 class="modal-title" id="myModalLabel">Delete Member</h4>
-				</center>
+		<div class="modal-header" style="background-color: #001D3D; text-align: center;">
+			
+			
+					<h4 class="modal-title" style="color: #FFFF;"  id="myModalLabel">Delete Member</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			
 			</div>
 			<div class="modal-body">
 				<p class="text-center">Are you sure you want to Delete</p>
@@ -352,11 +362,10 @@
 <div class="modal fade" id="decline_<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<center>
-					<h4 class="modal-title" id="myModalLabel">Decline Member</h4>
-				</center>
+		<div class="modal-header" style="background-color: #001D3D; text-align: center;">
+					<h4 class="modal-title" style="color: #FFFF;" id="myModalLabel">Decline Member</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			
 			</div>
 			<div class="modal-body">
 				<p class="text-center">Are you sure you want to Decline?</p>
@@ -399,11 +408,12 @@
 <div class="modal fade" id="acceptDoc_<?php echo $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<center>
-					<h4 class="modal-title" id="myModalLabel">Document Request</h4>
-				</center>
+		<div class="modal-header" style="background-color: #001D3D; text-align: center;">
+			
+				
+   
+					<h4 class="modal-title" style="color: #FFFF; text-align: center;" id="myModalLabel">Document Request</h4>
+					<button type="button" style="color: #FFFF;" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 			</div>
 			<div class="modal-body">
 				<p class="text-center">Are you sure you want to Accept Document Request:</p>

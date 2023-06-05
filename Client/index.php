@@ -147,6 +147,11 @@ if($email != false && $password != false){
 
   background-color: #001D3D;
 }
+
+.mt-2{
+  color: #001D3D;
+  font-weight: bold;
+}
 </style>
 
 <body>

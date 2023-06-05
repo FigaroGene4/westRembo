@@ -118,9 +118,10 @@
               <label for="firstName" style="font-weight: bold; color: #001D3D;">First Name</label>
               <input class="form-control" type="text" name="firstName" placeholder="First Name" required value="<?php echo $firstName ?>">
             </div>
+           
             <div class="form-group">
-              <label for="lastName" style="font-weight: bold; color: #001D3D;">Last Name</label>
-              <input class="form-control" type="text" name="lastName" placeholder="Last Name" required value="<?php echo $lastName ?>">
+              <label for="contactNumber" style="font-weight: bold; color: #001D3D;">Contact Number</label>
+              <input class="form-control" type="number" name="contactNumber" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="Contact Number" required value="<?php echo $contactNumber ?>">
             </div>
             <div class="form-group">
               <label for="email" style="font-weight: bold; color: #001D3D;">Email Address</label>
@@ -128,9 +129,9 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="form-group">
-              <label for="contactNumber" style="font-weight: bold; color: #001D3D;">Contact Number</label>
-              <input class="form-control" type="number" name="contactNumber" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11" placeholder="Contact Number" required value="<?php echo $contactNumber ?>">
+          <div class="form-group">
+              <label for="lastName" style="font-weight: bold; color: #001D3D;">Last Name</label>
+              <input class="form-control" type="text" name="lastName" placeholder="Last Name" required value="<?php echo $lastName ?>">
             </div>
             <div class="form-group">
               <label for="birthdate" style="font-weight: bold; color: #001D3D;">Birthdate</label>
@@ -205,7 +206,7 @@
       
         <br>
         <div class="form-group d-flex justify-content-center">
-          <input class="form-control button" type="submit" name="signup" value="Signup" style="width: 250px; background-color: #001D3D; font-weight: bolder;">
+          <input class="form-control button" type="submit" name="signup" value="Register" style="width: 250px; background-color: #001D3D; font-weight: bolder;">
         </div>
         <div class="link login-link text-center">Already a member? <a style="color: #FFC300;" href="login-user.php">Login here</a></div>
 

@@ -1,3 +1,4 @@
+<?php include 'includes/header-client.php';?>
 <?php
 
 if (isset($_POST['updateprofile'])) {
@@ -116,54 +117,7 @@ if ($email != false && $password != false) {
 <body>
 
 
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="../index.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../index.php">Home</a></li>
-          
-        <!--  <li><a href="blog.html">Blog</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <li><a id='noti_number'class="nav-link scrollto active" href="requestsandappointment.php">Notification</a></li>
-          
-          <li class="dropdown scrollto" style="color: pink;"><a  href="#"><span>Hello, <?php echo $fetch_info['firstName'] ?></span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="profile.php">Profile</a></li>
-           
-              <li><a href="requestsandappointment.php">Requests and Appointments</a></li>
-           
-              <li><a href="../temp/logout-user.php">Logout</a></li>
-            </ul>
-            
-          </li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header><!-- End Header -->
   <br><br><br><br><br>
   <style>
     .jbt {
@@ -173,13 +127,6 @@ if ($email != false && $password != false) {
 
 
     }
-
-
-
-
-
-
-
     .containerz {
       max-width: 200px;
       background: #6666ff;
@@ -240,82 +187,103 @@ if ($email != false && $password != false) {
     a {
       color: white;
     }
+
+    .user-img {
+      width: 250px;
+      height: 250px;
+      border: px solid #ddd;
+      border-radius: 10px;
+      object-fit:cover;
+    }
+
   </style>
 
   <div class="container">
 
 
-    <h1> Your Information</h1>
+  <h2 class="display-6" style="color: #001D3D; font-weight: bold;">Edit Profile</h2>
     <br><br>
     <?php
 
+      $conn = mysqli_connect('localhost', 'root', '', 'db_westrembo');
+
+      $sql = "SELECT * from table_residents where email = '$email'";
+      $result = $conn->query($sql);
+
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $firstname = $row['firstName'];
+          $lastname = $row['lastName'];
+          $contactnumber = $row['contactNumber'];
+
+          $id = $row['id'];
+          $img = $row['image'];
+
+      echo '<div class="text-center">';
+      echo '<img class="user-img rounded-circle" src="../temp/images/' . $img . '" ><br><br>';
+      echo '</div>';
+        }
+      }
     ?>
     <form action="#" method="post" enctype="multipart/form-data">
 
 
 
 
-      <div class="form-group">
-        <label for="exampleInputEmail1">First Name:</label>
-        <input type="text" name="firstNameClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientFirstName; ?>">
+    <div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="exampleInputEmail1">First Name:</label>
+      <input type="text" name="firstNameClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientFirstName; ?>">
+    </div>
 
+    <div class="form-group">
+      <label for="exampleInputEmail1">Last Name:</label>
+      <input type="text" name="lastNameClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientLastName; ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Contact Number:</label>
+      <input type="number" name="contactNumberClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientContactNumber; ?>">
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <label for="inputAddress2">Your Address:</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="addressDetails" value="<?php echo $addressDetails; ?>">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Baranggay</label>
+        <input type="text" class="form-control" id="inputCity" placeholder="Enter your baranggay" name="baranggay" value="<?php echo $baranggay; ?>">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">City</label>
+        <select id="inputState" class="form-control" placeholder="Select a City" name="city">
+          <option selected>Makati City</option>
+
+
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Postal Code</label>
+        <input type="number" class="form-control" id="inputZip" name="postalCode" placeholder="Enter Postal Code" value="<?php echo $postalCode; ?>">
       </div>
 
-
-      <div class="form-group">
-        <label for="exampleInputEmail1">Last Name:</label>
-        <input type="text" name="lastNameClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientLastName; ?>" </div>
-        <!--
-<div class="form-group">
-<label for="exampleInputEmail1">Email:</label>
-<input type="email" name="clientEmail" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  required placeholder="<?php echo $clientEmail; ?>">
-<small id="emailHelp" class="form-text text-muted">Email must not been used by others</small>
-</div> -->
-
-        <div class="form-group">
-          <label for="exampleInputEmail1">Contact Number:</label>
-          <input type="number" name="contactNumberClient" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required value="<?php echo $clientContactNumber; ?>">
-
-        </div>
-
-        <div class="form-group">
-          <label for="inputAddress2">Your Address:</label>
-          <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" name="addressDetails" value="<?php echo $addressDetails; ?>">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputCity">Baranggay</label>
-            <input type="text" class="form-control" id="inputCity" placeholder="Enter your baranggay" name="baranggay" value="<?php echo $baranggay; ?>">
-          </div>
-          <div class="form-group col-md-4">
-            <label for="inputState">City</label>
-            <select id="inputState" class="form-control" placeholder="Select a City" name="city" value="<?php echo $city; ?>">
-              
-              <option selected>Makati City</option>
-              <option selected>Taguig City</option>
-              <option selected>Pasig City</option>
-              
-            </select>
-          </div>
-          <div class="form-group col-md-2">
-            <label for="inputZip">Postal Code</label>
-            <input type="number" class="form-control" id="inputZip" name="postalCode" placeholder="Enter Postal Code" value="<?php echo $postalCode; ?>">
-          </div>
-        </div>
-
-
-
-        <div class="field image">
+      <div class="field image">
           <label>Upload Profile Picture</label><br>
           <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg">
         </div>
-        <br>
-        <br>
+    </div>
+  </div>
+</div>
 
-        <br><br><br>
-
-        <button name="updateprofile" type="submit" style="text-align: center" class="btn btn-primary">Update Profile Information</button>
-        <button name="updatepic" type="submit" style="text-align: center" class="btn btn-secondary">Change Profile Picture</button>
+<div class="text-center">
+  <button name="updateprofile" style="background-color: #001D3D; border-color: #001D3D;"type="submit" class="btn btn-primary">Update Profile Information</button>
+ 
+</div>
 
 
 
