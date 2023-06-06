@@ -1,4 +1,5 @@
 <?php require_once "controllerUserData.php"; ?>
+<?php include '../includes/header.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -44,26 +45,7 @@
 
 <body>
 
-<header id="header" class="header fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="../temp/user-otp.php" class="logo d-flex align-items-center">
-        <img src="assets/img/logowest.png" alt="">
-        <span>West Rembo</span>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto active" href="../temp/user-otp.php">Home</a></li>
-          
-          <li><a href="../temp/logout-user.php">Logout</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-
-    </div>
-  </header><!-- End Header -->
 <br><br><br><br><br>
 
 <div class="container">

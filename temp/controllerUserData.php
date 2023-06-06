@@ -349,35 +349,63 @@ if (isset($_POST['login'])) {
     $errors = $loginHandler->getErrors();
 }
 
-//if user click continue button in forgot password form
-if (isset($_POST['check-email'])) {
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $check_email = "SELECT * FROM table_residents WHERE email='$email'";
-    $run_sql = mysqli_query($con, $check_email);
-    if (mysqli_num_rows($run_sql) > 0) {
-        $code = rand(999999, 111111);
-        $insert_code = "UPDATE table_residents SET code = $code WHERE email = '$email'";
-        $run_query =  mysqli_query($con, $insert_code);
-        if ($run_query) {
-            $subject = "Password Reset Code";
-            $message = "Your password reset code is $code";
-            $sender = "From: spa2go.ph@gmail.com";
-            if (mail($email, $subject, $message, $sender)) {
-                $info = "We've sent a passwrod reset otp to your email - $email";
-                $_SESSION['info'] = $info;
-                $_SESSION['email'] = $email;
-                header('location: reset-code.php');
-                exit();
+
+//recursive #1
+class PasswordResetHandler {
+    private $con;
+    private $errors = array();
+
+    public function __construct($con) {
+        $this->con = $con;
+    }
+
+    public function checkEmail($email) {
+        $email = mysqli_real_escape_string($this->con, $email);
+        $check_email = "SELECT * FROM table_residents WHERE email='$email'";
+        $run_sql = mysqli_query($this->con, $check_email);
+
+        if (mysqli_num_rows($run_sql) > 0) {
+            $code = rand(999999, 111111);
+            $insert_code = "UPDATE table_residents SET code = $code WHERE email = '$email'";
+            $run_query =  mysqli_query($this->con, $insert_code);
+
+            if ($run_query) {
+                $subject = "Password Reset Code";
+                $message = "Your password reset code is $code";
+                $sender = "From: spa2go.ph@gmail.com";
+
+                if (mail($email, $subject, $message, $sender)) {
+                    $info = "We've sent a password reset OTP to your email - $email";
+                    $_SESSION['info'] = $info;
+                    $_SESSION['email'] = $email;
+                    header('location: reset-code.php');
+                    exit();
+                } else {
+                    $this->errors['otp-error'] = "Failed while sending code!";
+                }
             } else {
-                $errors['otp-error'] = "Failed while sending code!";
+                $this->errors['db-error'] = "Something went wrong!";
             }
         } else {
-            $errors['db-error'] = "Something went wrong!";
+            $this->errors['email'] = "This email address does not exist!";
         }
-    } else {
-        $errors['email'] = "This email address does not exist!";
+    }
+
+    public function getErrors() {
+        return $this->errors;
     }
 }
+
+// Usage
+if (isset($_POST['check-email'])) {
+    $email = $_POST['email'];
+
+    $passwordResetHandler = new PasswordResetHandler($con);
+    $passwordResetHandler->checkEmail($email);
+
+    $errors = $passwordResetHandler->getErrors();
+}
+
 
 //if user click check reset otp button
 if (isset($_POST['check-reset-otp'])) {
@@ -399,27 +427,45 @@ if (isset($_POST['check-reset-otp'])) {
 }
 
 //if user click change password button
-if (isset($_POST['change-password'])) {
-    $_SESSION['info'] = "";
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+//recursive #2
+function changePassword($con, $password, $cpassword)
+{
     if ($password !== $cpassword) {
-        $errors['password'] = "Confirm password not matched!";
+        return ['password' => "Confirm password not matched!"];
+    }
+
+    $code = 0;
+    $email = $_SESSION['email']; // Getting this email using session
+    $encpass = password_hash($password, PASSWORD_BCRYPT);
+    $update_pass = "UPDATE table_residents SET code = $code, password = '$encpass' WHERE email = '$email'";
+    $run_query = mysqli_query($con, $update_pass);
+    if ($run_query) {
+        $info = "Your password has been changed. Now you can login with your new password.";
+        $_SESSION['info'] = $info;
+        return ['success' => true];
     } else {
-        $code = 0;
-        $email = $_SESSION['email']; //getting this email using session
-        $encpass = password_hash($password, PASSWORD_BCRYPT);
-        $update_pass = "UPDATE table_residents SET code = $code, password = '$encpass' WHERE email = '$email'";
-        $run_query = mysqli_query($con, $update_pass);
-        if ($run_query) {
-            $info = "Your password changed. Now you can login with your new password.";
-            $_SESSION['info'] = $info;
-            header('Location: password-changed.php');
-        } else {
-            $errors['db-error'] = "Failed to change your password!";
-        }
+        return ['db-error' => "Failed to change your password!"];
     }
 }
+
+if (isset($_POST['change-password'])) {
+    $_SESSION['info'] = "";
+
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+
+    $result = changePassword($con, $password, $cpassword);
+
+    if (isset($result['password'])) {
+        $errors['password'] = $result['password'];
+    } elseif (isset($result['success'])) {
+        header('Location: password-changed.php');
+        exit();
+    } elseif (isset($result['db-error'])) {
+        $errors['db-error'] = $result['db-error'];
+    }
+}
+
 
 //if login now button click
 if (isset($_POST['login-now'])) {
