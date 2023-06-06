@@ -428,84 +428,79 @@ if (isset($_POST['login-now'])) {
 
 
 // if resident submits a request 
+class RequestHandler {
+    private $con;
+    private $errors = array();
 
-
-if(isset($_POST['request'])){
-
-    $category = $_SESSION['categ'];
-
-$_SESSION['category'] = $category;
-
-function getGUIDnoHash()
-    {
-      mt_srand((float)microtime() * 10000);
-      $charid = md5(uniqid(rand(), true));
-      $c = unpack("C*", $charid);
-      $c = implode("", $c);
-
-      return substr('DOC' . $c, 0, 11);
+    public function __construct($con) {
+        $this->con = $con;
     }
 
+    private function getGUIDnoHash() {
+        mt_srand((float)microtime() * 10000);
+        $charid = md5(uniqid(rand(), true));
+        $c = unpack("C*", $charid);
+        $c = implode("", $c);
 
+        return substr('DOC' . $c, 0, 11);
+    }
 
-    $transactionNumber = getGUIDnoHash();
-    $_SESSION['transactionNumber'] =$transactionNumber;
+    public function submitRequest($category, $reason, $birthplace, $period, $voter, $owner, $relation) {
+        session_start();
 
-    
-$reason = $_POST['reason'];
-$birthplace = $_POST['birthplace'];
+        $_SESSION['category'] = $category;
+        
+        $transactionNumber = $this->getGUIDnoHash();
+        $_SESSION['transactionNumber'] = $transactionNumber;
+
+        $email = $_SESSION['email'];
+
+        $sel = mysqli_query($this->con, "SELECT * FROM `table_documentrequest` WHERE email = '$email' AND category = '$category'");
+
+        if (mysqli_num_rows($sel) > 0) {
+            $this->errors['reqerror'] = "You have already submitted a request for the same category!";
+        } else {
+            $sql = "SELECT * FROM table_residents WHERE email = '$email'";
+            $resultset = mysqli_query($this->con, $sql) or die("database error:" . mysqli_error($this->con));
+
+            while ($rows = mysqli_fetch_assoc($resultset)) {
+                $category = $_SESSION['category'];
+                $transactionNumber = $_SESSION['transactionNumber'];
+                $firstName = $rows['firstName'];
+                $lastName = $rows['lastName'];
+                $price = '';
+                $dates = date("Y-m-d");
+                $email = $rows['email'];
+                $reason = $reason;
+                $status = "For Approval";
+            }
+
+            $sql = "INSERT INTO table_documentrequest (transactionNumber, firstName, lastName, email, date, time, reason, price, category, status, birthplace, period, voter, owner, relation)
+                    VALUES ('$transactionNumber', '$firstName', '$lastName', '$email', '$dates', '$reason', '$price', '$category', '$status','$birthplace','$period','$voter','$owner','$relation')";
+
+            $this->con->query($sql);
+            header("Location: requestapproval2.php");
+            exit();
+        }
+    }
+
+    public function getErrors() {
+        return $this->errors;
+    }
+}
+
+// Usage
+if (isset($_POST['request'])) {
+    $category = $_SESSION['categ'];
+    $reason = $_POST['reason'];
+    $birthplace = $_POST['birthplace'];
     $period = $_POST['period'];
     $voter = $_POST['voter'];
     $owner = $_POST['houseOwner'];
     $relation = $_POST['relation'];
 
+    $requestHandler = new RequestHandler($con);
+    $requestHandler->submitRequest($category, $reason, $birthplace, $period, $voter, $owner, $relation);
 
-
-$email = $_SESSION['email'];
-
-$sel = mysqli_query($con, "SELECT * FROM `table_documentrequest` WHERE email = '$email' AND  category = '$category'");
-
-if (mysqli_num_rows($sel) > 0) {
-  $errors['reqerror'] ="You already submitted a same request!";
-
-}else{
-
-include_once("db_conn.php");
-$sql = "SELECT * FROM table_residents WHERE email = '$email'";
-
-
-$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
-
-
-while( $rows = mysqli_fetch_assoc($resultset)){	
-
-    $category = $_SESSION['category'];
-
-    $transactionNumber = $_SESSION['transactionNumber'];
-
-    $firstName = $rows['firstName'];
-    $lastName = $rows['lastName'];
-    $price = '';
-    $dates = date("Y-m-d");
-    $email =$rows['email'];
-
-
-   
-
-    $reason = $_POST['reason'];
-    $status = "For Approval";
-
-}
-
-$sql = "INSERT INTO table_documentrequest(transactionNumber, firstName, lastName,
-email, date, time, reason, price, category, status, birthplace,period,voter,owner,relation)
-    VALUES ('$transactionNumber', '$firstName', '$lastName', '$email', '$dates', '$time', '$reason', '$price', '$category', '$status','$birthplace','$period','$voter','$owner','$relation')";
-
-
-    $conn->query($sql);
-    header("Location: requestapproval2.php");
-    
-}
-
-
+    $errors = $requestHandler->getErrors();
 }
