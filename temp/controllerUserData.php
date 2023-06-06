@@ -15,300 +15,338 @@ $streetNumber = "";
 
 
 //if user signup button
-if (isset($_POST['signup'])) {
-    $firstName = mysqli_real_escape_string($con, $_POST['firstName']);
-    $lastName = mysqli_real_escape_string($con, $_POST['lastName']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $contactNumber = mysqli_real_escape_string($con, $_POST['contactNumber']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $birthdate = mysqli_real_escape_string($con, $_POST['birthdate']);
-    $gender = mysqli_real_escape_string($con, $_POST['gender']);
-    $houseNumber = mysqli_real_escape_string($con, $_POST['houseNumber']);
-    $streetNumber = mysqli_real_escape_string($con, $_POST['streetNumber']);
-    $sitio = mysqli_real_escape_string($con, $_POST['sitio']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-    $dateRegistered = date("Y-m-d");
+class Database {
+    protected $con;
 
-   //contactNumber validation structure
+    public function __construct($hostname, $username, $password, $dbname) {
+        $this->con = mysqli_connect($hostname, $username, $password, $dbname);
 
-   if(preg_match("/^[0-9]{11}$/", $contactNumber)) {
-    // $phone is valid
-  }
-
-  else{
-    $errors['contactwrong'] = 'Contact number is invalid';
-
-  }
-
-  //validate email
-  // Include library file
-
-
-
-  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    echo("$email is a valid email address");
-  } else {
-    $errors['emailinvalid'] = 'Email is invalid';;
-  }
-
-
-    // Validate password strength
-    $uppercase = preg_match('@[A-Z]@', $password);
-    $lowercase = preg_match('@[a-z]@', $password);
-    $number    = preg_match('@[0-9]@', $password);
-
-    if (!$uppercase || !$lowercase || !$number  || strlen($cpassword) < 8) {
-        $errors['passwordnotstrong'] = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number';
-    }
-    if ($password !== $cpassword) {
-        $errors['password'] = "Confirm password not matched!";
-    }
-
-    
-  
-
-
-
-
-    if ($password !== $cpassword) {
-        $errors['password'] = "Confirm password not matched!";
-    }
-    $email_check = "SELECT * FROM table_residents WHERE email = '$email'";
-    $res = mysqli_query($con, $email_check);
-    if (mysqli_num_rows($res) > 0) {
-        $errors['email'] = "Email that you have entered already exist!";
-    }
-
-
-   
-
-    $number_check = "SELECT * FROM table_residents WHERE contactNumber = '$contactNumber'";
-    $res1 = mysqli_query($con, $number_check);
-    if (mysqli_num_rows($res1) > 0) {
-        $errors['number'] = "Contact Number that you have entered already exist!";
-    }
-    if (count($errors) === 0) {
-
-
-        $img_name = $_FILES['image']['name'];
-        $img_type = $_FILES['image']['type'];
-        $tmp_name = $_FILES['image']['tmp_name'];
-
-        $img_explode = explode('.', $img_name);
-        $img_ext = end($img_explode);
-
-        $extensions = ["jpeg", "png", "jpg"];
-        if (in_array($img_ext, $extensions) === true) {
-            $types = ["image/jpeg", "image/jpg", "image/png"];
-            if (in_array($img_type, $types) === true) {
-                $time = time();
-                $new_img_name = $time . $img_name;
-                date_default_timezone_set('Asia/Taipei');
-
-                $encpass = password_hash($password, PASSWORD_BCRYPT);
-                $code = rand(999999, 111111);
-                $status = "notverified";
-                $dateJoined = date('Y-m-d');
-                $validation = 'pending';
-                $insert_data = "INSERT INTO table_residents (firstName, lastName, email, birthdate, gender, password, houseNumber, streetNumber, sitio, contactNumber, status, code, dateRegistered, image, validationT)
-                values('$firstName','$lastName', '$email', '$birthdate', '$gender', '$encpass', '$houseNumber', '$streetNumber','$sitio', '$contactNumber', '$status', '$code', '$dateRegistered', '{$new_img_name}', '$validation')";
-
-
-
-                $ran_id = rand(time(), 100000000);
-                $status1 = "Active now";
-                $hostname1 = "localhost";
-                $username1 = "root";
-                $password1 = "";
-                $dbname1 = "db_westrembo";
-
-
-                if (move_uploaded_file($tmp_name, "images/" . $new_img_name)) {
-                    $ran_id = rand(time(), 100000000);
-                    $status1 = "Active now";
-                    $hostname1 = "localhost";
-                    $username1 = "root";
-                    $password1 = "";
-                    $dbname1 = "db_westrembo";
-
-                   
-
-               
-
-                $data_check = mysqli_query($con, $insert_data);
-
-                if ($data_check) {
-                    $subject = "Email Verification Code";
-                    $message = "Your verification code is $code";
-                    $sender = "From: westrembo.ph@gmail.com";
-                    if (mail($email, $subject, $message, $sender)) {
-                        $info = "We've sent a verification code to your email - $email";
-                        $_SESSION['info'] = $info;
-                        $_SESSION['email'] = $email;
-                       
-                        $_SESSION['password'] = $password;
-                        header('location: user-otp.php');
-                        exit();
-                    } else {
-                        $errors['otp-error'] = "Failed while sending code!";
-                    }
-                } else {
-                    $errors['db-error'] = "Failed while inserting data into database!";
-                }
-            }
-        }
-            }
+        if (!$this->con) {
+            die("Connection failed: " . mysqli_connect_error());
         }
     }
-    
 
-//if user click verification code submit button
-if (isset($_POST['check'])) {
-    $_SESSION['info'] = "";
-    $otp_code = mysqli_real_escape_string($con, $_POST['otp']);
-    $check_code = "SELECT * FROM table_residents WHERE code = $otp_code";
-    $code_res = mysqli_query($con, $check_code);
-    if (mysqli_num_rows($code_res) > 0) {
-        $fetch_data = mysqli_fetch_assoc($code_res);
-        $fetch_code = $fetch_data['code'];
-        $email = $fetch_data['email'];
-        $validation = $fetch['validationT'];
-        $code = 0;
-        
-        $status = 'verified';
-        $update_otp = "UPDATE table_residents SET code = $code, status = '$status' WHERE code = $fetch_code";
-        $update_res = mysqli_query($con, $update_otp);
-        if ($update_res) {
-            $_SESSION['firstName'] = $firstname;
-            $_SESSION['email'] = $email;
-            
-           
-            header('location: ../Client/verify.php');
-            exit();
-            if ($update_res) {
-                $_SESSION['firstName'] = $firstname;
-                $_SESSION['email'] = $email;
-                $validation == 'pending';
-               
-                header('location: ../Client/verify.php');
-                
-            }
-            if ($update_res) {
-                $_SESSION['firstName'] = $firstname;
-                $_SESSION['email'] = $email;
-                $validation == 'For approval';
-               
-                header('location: ../Client/pendingverify.php');
-                exit();
-            }
-        } else {
-            $errors['otp-error'] = "Failed while updating code!";
-        }
-    } else {
-        $errors['otp-error'] = "You've entered incorrect code!";
+    public function escapeString($value) {
+        return mysqli_real_escape_string($this->con, $value);
     }
 }
 
+class User extends Database {
+    protected $errors = array();
+
+    public function validateContactNumber($contactNumber) {
+        if (!preg_match("/^[0-9]{11}$/", $contactNumber)) {
+            $this->errors['contactwrong'] = 'Contact number is invalid';
+        }
+    }
+
+    public function validateEmail($email) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->errors['emailinvalid'] = 'Email is invalid';
+        }
+    }
+
+    public function validatePassword($password, $cpassword) {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number = preg_match('@[0-9]@', $password);
+
+        if (!$uppercase || !$lowercase || !$number || strlen($password) < 8) {
+            $this->errors['passwordnotstrong'] = 'Password should be at least 8 characters in length and should include at least one upper case letter, one number';
+        }
+        
+        if ($password !== $cpassword) {
+            $this->errors['password'] = "Confirm password not matched!";
+        }
+    }
+
+    public function checkExistingEmail($email) {
+        $email_check = "SELECT * FROM table_residents WHERE email = '$email'";
+        $res = mysqli_query($this->con, $email_check);
+        
+        if (mysqli_num_rows($res) > 0) {
+            $this->errors['email'] = "Email that you have entered already exists!";
+        }
+    }
+
+    public function checkExistingContactNumber($contactNumber) {
+        $number_check = "SELECT * FROM table_residents WHERE contactNumber = '$contactNumber'";
+        $res = mysqli_query($this->con, $number_check);
+
+        if (mysqli_num_rows($res) > 0) {
+            $this->errors['number'] = "Contact Number that you have entered already exists!";
+        }
+    }
+
+    public function insertUser($firstName, $lastName, $email, $birthdate, $gender, $password, $houseNumber, $streetNumber, $sitio, $contactNumber, $status, $code, $dateRegistered, $new_img_name, $validation) {
+        $encpass = password_hash($password, PASSWORD_BCRYPT);
+
+        $insert_data = "INSERT INTO table_residents (firstName, lastName, email, birthdate, gender, password, houseNumber, streetNumber, sitio, contactNumber, status, code, dateRegistered, image, validationT)
+            values('$firstName','$lastName', '$email', '$birthdate', '$gender', '$encpass', '$houseNumber', '$streetNumber','$sitio', '$contactNumber', '$status', '$code', '$dateRegistered', '{$new_img_name}', '$validation')";
+
+        $data_check = mysqli_query($this->con, $insert_data);
+
+        if ($data_check) {
+            $subject = "Email Verification Code";
+            $message = "Your verification code is $code";
+            $sender = "From: westrembo.ph@gmail.com";
+            if (mail($email, $subject, $message, $sender)) {
+                $info = "We've sent a verification code to your email - $email";
+                $_SESSION['info'] = $info;
+                $_SESSION['email'] = $email;
+                $_SESSION['password'] = $password;
+                header('location: user-otp.php');
+                exit();
+            } else {
+                $this->errors['otp-error'] = "Failed while sending code!";
+            }
+        } else {
+            $this->errors['db-error'] = "Failed while inserting data into the database!";
+        }
+    }
+
+    public function handleRegistration() {
+        if (isset($_POST['signup'])) {
+            $firstName = $this->escapeString($_POST['firstName']);
+            $lastName = $this->escapeString($_POST['lastName']);
+            $email = $this->escapeString($_POST['email']);
+            $contactNumber = $this->escapeString($_POST['contactNumber']);
+            $password = $this->escapeString($_POST['password']);
+            $birthdate = $this->escapeString($_POST['birthdate']);
+            $gender = $this->escapeString($_POST['gender']);
+            $houseNumber = $this->escapeString($_POST['houseNumber']);
+            $streetNumber = $this->escapeString($_POST['streetNumber']);
+            $sitio = $this->escapeString($_POST['sitio']);
+            $cpassword = $this->escapeString($_POST['cpassword']);
+            $dateRegistered = date("Y-m-d");
+        
+            $this->validateContactNumber($contactNumber);
+            $this->validateEmail($email);
+            $this->validatePassword($password, $cpassword);
+            $this->checkExistingEmail($email);
+            $this->checkExistingContactNumber($contactNumber);
+        
+            if (count($this->errors) === 0) {
+                $img_name = $_FILES['image']['name'];
+                $img_type = $_FILES['image']['type'];
+                $tmp_name = $_FILES['image']['tmp_name'];
+        
+                $img_explode = explode('.', $img_name);
+                $img_ext = end($img_explode);
+        
+                $extensions = ["jpeg", "png", "jpg"];
+                if (in_array($img_ext, $extensions) === true) {
+                    $types = ["image/jpeg", "image/jpg", "image/png"];
+                    if (in_array($img_type, $types) === true) {
+                        $time = time();
+                        $new_img_name = $time . $img_name;
+                        date_default_timezone_set('Asia/Taipei');
+        
+                        if (move_uploaded_file($tmp_name, "images/" . $new_img_name)) {
+                            $status = "notverified";
+                            $code = rand(999999, 111111);
+                            $validation = 'pending';
+        
+                            $this->insertUser($firstName, $lastName, $email, $birthdate, $gender, $password, $houseNumber, $streetNumber, $sitio, $contactNumber, $status, $code, $dateRegistered, $new_img_name, $validation);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Usage
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$dbname = "db_westrembo";
+
+$user = new User($hostname, $username, $password, $dbname);
+$user->handleRegistration();
+
+
+//if user click verification code submit button
+abstract class OTPVerification {
+    protected $con;
+    protected $errors = array();
+
+    public function __construct($con) {
+        $this->con = $con;
+    }
+
+    abstract public function handleVerification($otpCode);
+}
+
+class OTPVerificationSuccess extends OTPVerification {
+    public function handleVerification($otpCode) {
+        $code = 0;
+        $status = 'verified';
+        $update_otp = "UPDATE table_residents SET code = $code, status = '$status' WHERE code = $otpCode";
+        $update_res = mysqli_query($this->con, $update_otp);
+
+        if ($update_res) {
+            $fetch_data = mysqli_fetch_assoc($update_res);
+            $email = $fetch_data['email'];
+            $_SESSION['firstName'] = $fetch_data['firstName'];
+            $_SESSION['email'] = $email;
+            
+            // Handle different validation states
+            $validation = $fetch_data['validationT'];
+            if ($validation == 'pending') {
+                header('location: ../Client/verify.php');
+                exit();
+            } elseif ($validation == 'For approval') {
+                header('location: ../Client/pendingverify.php');
+                exit();
+            } else {
+                // Handle default case
+                header('location: ../Client/verify.php');
+                exit();
+            }
+        } else {
+            $this->errors['otp-error'] = "Failed while updating code!";
+        }
+    }
+}
+
+class OTPVerificationFailure extends OTPVerification {
+    public function handleVerification($otpCode) {
+        $this->errors['otp-error'] = "You've entered incorrect code!";
+    }
+}
+
+// Usage
+if (isset($_POST['check'])) {
+    $_SESSION['info'] = "";
+    $otp_code = mysqli_real_escape_string($con, $_POST['otp']);
+
+    $verificationResult = null;
+    $check_code = "SELECT * FROM table_residents WHERE code = $otp_code";
+    $code_res = mysqli_query($con, $check_code);
+
+    if (mysqli_num_rows($code_res) > 0) {
+        $verificationResult = new OTPVerificationSuccess($con);
+    } else {
+        $verificationResult = new OTPVerificationFailure($con);
+    }
+
+    $verificationResult->handleVerification($otp_code);
+}
+
+
 //if user click login button
-if (isset($_POST['login'])) {
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    
 
-    
-    function validate($data){
+class LoginHandler {
+    private $con;
+    private $errors = array();
+
+    public function __construct($con) {
+        $this->con = $con;
+    }
+
+    private function validate($data) {
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
         return $data;
-     }
- 
-     $email = validate($_POST['email']);    
-     $pass = validate($_POST['password']);
-
-    
-   
-    $sql = "SELECT * FROM table_admin WHERE email='$email' AND password='$password'";
-
-		$result = mysqli_query($con, $sql);
-
-    if (mysqli_num_rows($result) === 1) {
-        $row = mysqli_fetch_assoc($result);
-        if ($row['email'] === $email && $row['password'] === $password) {
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['name'] = $row['name'];
-            $_SESSION['id'] = $row['id'];
-
-            header("Location: ../Admin/home.php");
-            
-        }
     }
-    
 
+    public function handleLogin($email, $password) {
+        $email = $this->validate($email);
+        $password = $this->validate($password);
 
-    $check_email = "SELECT * FROM table_residents WHERE email = '$email'";
-    $res = mysqli_query($con, $check_email);
+        $sql = "SELECT * FROM table_admin WHERE email='$email' AND password='$password'";
+        $result = mysqli_query($this->con, $sql);
 
-    
-    if (mysqli_num_rows($res) > 0) {
-        $fetch = mysqli_fetch_assoc($res);
-        $fetch_pass = $fetch['password'];
+        if (mysqli_num_rows($result) === 1) {
+            $row = mysqli_fetch_assoc($result);
+            if ($row['email'] === $email && $row['password'] === $password) {
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['name'] = $row['name'];
+                $_SESSION['id'] = $row['id'];
 
-        if (password_verify($password, $fetch_pass)) {
-            $_SESSION['email'] = $email;
-            $status = $fetch['status'];
-            $validation = $fetch['validationT'];
-
-            if ($status == 'verified' && $validation == 'verified') {
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $password;
-                header('location: ../Client/index.php');
+                header("Location: ../Admin/home.php");
+                exit();
             }
+        }
 
-                if ($status == 'verified' && $validation !='verified') {
+        $check_email = "SELECT * FROM table_residents WHERE email = '$email'";
+        $res = mysqli_query($this->con, $check_email);
+
+        if (mysqli_num_rows($res) > 0) {
+            $fetch = mysqli_fetch_assoc($res);
+            $fetch_pass = $fetch['password'];
+
+            if (password_verify($password, $fetch_pass)) {
+                $_SESSION['email'] = $email;
+                $status = $fetch['status'];
+                $validation = $fetch['validationT'];
+
+                if ($status == 'verified' && $validation == 'verified') {
                     $_SESSION['email'] = $email;
-                   
+                    $_SESSION['password'] = $password;
+                    header('location: ../Client/index.php');
+                    exit();
+                }
+
+                if ($status == 'verified' && $validation != 'verified') {
+                    $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
                     header('location: ../Client/verify.php');
+                    exit();
                 }
-    
-                if ($status == 'verified' && $validation =='pendingz') {
+
+                if ($status == 'verified' && $validation == 'pendingz') {
                     $_SESSION['email'] = $email;
-                   
                     $_SESSION['password'] = $password;
                     header('location: ../Client/verify.php');
+                    exit();
                 }
-    
-                
-    
-            
-            if ($status == 'verified' && $validation =='Pending Verify') {
-                $_SESSION['email'] = $email;
-            
-                $_SESSION['password'] = $password;
-                header('location: ../artist/pendingverify.php');
-            }
-    
-            if ($status == 'verified' && $validation =='Declined') {
-                $_SESSION['email'] = $email;
-                
-                $_SESSION['password'] = $password;
-               # header('location: ../artist/declinedartist.php');
-            }
-            
-            if($status != 'verified') {
-                $info = "It's look like you haven't still verify your email - $email";
-                $_SESSION['info'] = $info;
 
-                header('location: user-otp.php');
+                if ($status == 'verified' && $validation == 'Pending Verify') {
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    header('location: ../artist/pendingverify.php');
+                    exit();
+                }
+
+                if ($status == 'verified' && $validation == 'Declined') {
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                    // header('location: ../artist/declinedartist.php');
+                    exit();
+                }
+
+                if ($status != 'verified') {
+                    $info = "It's look like you haven't verified your email yet - $email";
+                    $_SESSION['info'] = $info;
+                    header('location: user-otp.php');
+                    exit();
+                }
+            } else {
+                $this->errors['email'] = "Incorrect email or password!";
             }
         } else {
-            $errors['email'] = "Incorrect email or password!";
+            $this->errors['email'] = "It looks like you're not yet a member! Click on the bottom link to sign up.";
         }
-    } else {
-        $errors['email'] = "It's look like you're not yet a member! Click on the bottom link to signup.";
     }
+
+    public function getErrors() {
+        return $this->errors;
+    }
+}
+
+// Usage
+if (isset($_POST['login'])) {
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+
+    $loginHandler = new LoginHandler($con);
+    $loginHandler->handleLogin($email, $password);
+
+    $errors = $loginHandler->getErrors();
 }
 
 //if user click continue button in forgot password form
